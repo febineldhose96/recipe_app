@@ -1,0 +1,7 @@
+:root {
+  font-family: monospace;
+}
+@font-face {
+  font-family: firstfont;
+  src: url("https://fonts.googleapis.com/css2?family=Kablammo&display=swap");
+}

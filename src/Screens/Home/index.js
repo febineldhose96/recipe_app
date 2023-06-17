@@ -16,9 +16,6 @@ export default function Home(props) {
     <div>
       <title>hi</title>
       <h1>Hi welcome to Home Page {state.value}</h1>
-      {state.newVal?.map((e) => (
-        <img src={e.image} />
-      ))}
       <button onClick={fetchNew}>Press</button>
       <button
         onClick={() => {

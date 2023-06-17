@@ -1,0 +1,92 @@
+@import url(../../Config/fonts.css);
+@import url("https://fonts.googleapis.com/css2?family=Kablammo&display=swap");
+.upload_recipe {
+  font-size: 16px;
+}
+.main-container {
+  background-color: white;
+}
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 15px;
+}
+.recipe-name-input {
+  display: flex;
+  padding: 0.5em 10px;
+  border-radius: 7px;
+  border: 0.5px solid lightgrey;
+  width: 100%;
+}
+.add-button-wrapper {
+  gap: 5px;
+  display: flex;
+  margin-top: 20px;
+}
+.add-button {
+  border-radius: 2rem;
+  padding-inline: 10px;
+  padding-block: 5px;
+  gap: 3px;
+  border: none;
+}
+.plain-text1 {
+  margin-top: 15px;
+  font-weight: 800;
+  font-family: firstfont;
+}
+.description-input {
+  width: 100%;
+  margin-top: 5px;
+  padding-inline: 5px;
+  border: 0.5px solid lightgray;
+  max-height: 300px;
+  min-height: 100px;
+  padding: 8px;
+  border-radius: 5px;
+}
+.description-input:focus {
+  outline: 0.5px solid lightseagreen;
+}
+.label-serve {
+  padding-block: 5px;
+}
+.serve-input {
+  padding: 8px;
+  max-width: 40%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+.row-container {
+  padding-block: 10px;
+}
+.time-input {
+  padding: 8px;
+  max-width: 40%;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+.save-button {
+  border-radius: 20px;
+  border: none;
+  background-color: cadetblue;
+  padding: 5px;
+  padding-inline: 15px;
+  margin-block: 20px;
+  align-self: center;
+  color: white;
+  font-size: medium;
+  font-weight: bold;
+}
+@media (min-width: 767px) {
+  .upload_recipe {
+    padding-block: 2rem;
+  }
+  .main-container {
+    margin: 0rem 10rem 2rem 10rem;
+    padding: 2rem;
+  }
+}

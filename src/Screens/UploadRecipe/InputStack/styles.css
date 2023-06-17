@@ -1,0 +1,17 @@
+@import url(../../../Config/fonts.css);
+.inputstack {
+  display: flex;
+  flex-direction: column;
+  .plain-text1 {
+    margin-top: 15px;
+    font-weight: 800;
+    font-family: firstfont;
+  }
+  .input1 {
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 767px) {
+  }
+}
