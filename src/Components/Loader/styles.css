@@ -1,0 +1,10 @@
+.loader_main {
+  position: absolute;
+  z-index: 9999;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

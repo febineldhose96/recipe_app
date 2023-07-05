@@ -28,7 +28,9 @@ export default function InputStack({
         const _ftrVal = stack.filter((e) => e.text.length > 0);
         setStack([..._ftrVal, { text: "" }]);
       }
-      onChange(stack);
+      const nw = [...stack];
+      nw.pop();
+      onChange(nw);
     },
     [stack, setStack, onChange]
   );

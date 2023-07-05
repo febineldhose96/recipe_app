@@ -9,10 +9,11 @@ export default function FileContainer({
   const fileRef = useRef(null);
   const [file, setFile] = useState(null);
   const filePick = async (event) => {
+    const _file = event?.target?.files[0];
     if (event?.target?.files[0]) {
-      var nwfile = URL.createObjectURL(event?.target?.files[0]);
-      _changeFileVal(nwfile);
-      onFilePick(nwfile);
+      var url = URL.createObjectURL(_file);
+      _changeFileVal(url);
+      onFilePick(_file);
     } else {
     }
   };
