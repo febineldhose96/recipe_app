@@ -1,6 +1,7 @@
 const NAV_SCREENS = {
-  login: "login",
-  signup: "/",
-  uploadrecipe: "uploadrecipe",
+  login: "/login",
+  signup: "/signup",
+  uploadrecipe: "/uploadrecipe",
+  home: "/",
 };
 export { NAV_SCREENS };

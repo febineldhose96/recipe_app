@@ -21,8 +21,6 @@ export default function UploadRecipe(params) {
     recipe_pretime_mnts: 0,
     recipe_cooktime_hrs: 0,
     recipe_cooktime_mnts: 0,
-    video_urls: [],
-    image_urls: [],
   });
   const handleInputs = useCallback(
     (type, evnt) => {
@@ -48,18 +46,23 @@ export default function UploadRecipe(params) {
       const imageRef = ref(storage, `recipe-thumbnails/${Date.now()}`);
       const videoRef = ref(storage, `recipe-videos/${Date.now()}`);
       const uploadFile = async (_ref, arr, type) => {
-        arr.map((_file) =>
-          uploadBytes(_ref, _file).then(async (res) => {
-            getDownloadURL(_ref).then((url) => {
-              const nURL = data[type];
-              setData((e) => ({ ...e, [type]: [...nURL, url] }));
+        return Promise.all(
+          arr.map(async (_file) => {
+            const url = await uploadBytes(_ref, _file).then(async (res) => {
+              const url = await getDownloadURL(_ref).then((url) => url);
+              return url;
             });
+            return url;
           })
         );
       };
-      await uploadFile(imageRef, images, "image_urls");
-      await uploadFile(videoRef, video, "video_urls");
-      addDoc(collection(db, "recipes"), { ...data }).then((e) => {
+      const video_urls = await uploadFile(videoRef, video, "video_urls");
+      const image_urls = await uploadFile(imageRef, images, "image_urls");
+      addDoc(collection(db, "recipes"), {
+        ...data,
+        video_urls,
+        image_urls,
+      }).then((res) => {
         setloading(false);
       });
     } catch (error) {
