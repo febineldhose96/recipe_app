@@ -13,6 +13,7 @@ import Login from "../Screens/Login";
 import Home from "../Screens/Home";
 import Header from "../Components/Header";
 import Profile from "../Screens/Profile";
+import RecipeDetails from "../Screens/RecipeDetails";
 function MainNav(params) {
   return (
     <NavigationProvider>
@@ -24,9 +25,13 @@ function MainNav(params) {
           <Routes>
             <Route path={NAV_SCREENS.signup} element={<SignUp />} />
             <Route path={NAV_SCREENS.login} element={<Login />} />
-            <Route path={NAV_SCREENS.uploadrecipe} element={<UploadRecipe />} />
             <Route path={NAV_SCREENS.home} element={<Home />} />
+            <Route
+              path={NAV_SCREENS.recipe_details}
+              element={<RecipeDetails />}
+            />
             <Route path={NAV_SCREENS.profile} element={<Profile />} />
+            <Route path={NAV_SCREENS.uploadrecipe} element={<UploadRecipe />} />
             <Route path="*" element={<Pof404 />} />
           </Routes>
         </div>
