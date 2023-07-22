@@ -1,0 +1,59 @@
+@import url(../../Config/color.css);
+.header_main {
+  position: fixed;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+  padding-left: 30px;
+  flex: 1;
+  padding-right: 20px;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+.header_logo_ {
+  font-family: cursive;
+  color: white;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.header_nav {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.nav_item {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  padding-block: 10px;
+  min-width: 200px;
+  transition: transform 0.2s;
+}
+.nav_item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.03);
+}
+.header_nav_icon {
+  color: white;
+  margin-right: 10px;
+  font-size: 25px;
+  margin-left: 5px;
+}
+.header_nav_name_active {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: large;
+  font-weight: bolder;
+}
+.header_nav_name_inactive {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: large;
+}
+.header_nav_name_active:hover,
+.header_nav_name_inactive:hover {
+  color: white;
+  transform: none;
+}

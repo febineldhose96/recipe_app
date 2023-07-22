@@ -3,4 +3,9 @@
   --secondary: #ea80fc;
   --on-primary: #fafafa;
   --on-secondary: #000504;
+  --header_color: #f57328;
+  --indicator_color: #000000;
+
+  /* used from here */
+  --orange_medium: #f57328;
 }

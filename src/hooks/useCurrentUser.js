@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../Firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { updateUserDetails } from "../Screens/Profile/reducer";
 
 export default function useCurrentUser() {
   const [data, setData] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     auth.onAuthStateChanged((userLoggedIn) => {
       if (userLoggedIn) {
@@ -13,13 +16,16 @@ export default function useCurrentUser() {
             where("userId", "==", userLoggedIn.uid)
           );
           const nwDta = await getDocs(q);
-          setData(nwDta.docs.map((e) => ({ ...e.data(), id: e.id }))[0]);
+          const _fdata =
+            nwDta.docs.map((e) => ({ ...e.data(), id: e.id }))[0] ?? {};
+          dispatch(updateUserDetails(_fdata));
+          setData(_fdata);
         };
         getUsers();
       } else {
         setData(null);
       }
     });
-  }, []);
+  }, [dispatch]);
   return data;
 }

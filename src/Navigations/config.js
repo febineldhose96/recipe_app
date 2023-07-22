@@ -3,5 +3,6 @@ const NAV_SCREENS = {
   signup: "/signup",
   uploadrecipe: "/uploadrecipe",
   home: "/",
+  profile: "/profile",
 };
 export { NAV_SCREENS };

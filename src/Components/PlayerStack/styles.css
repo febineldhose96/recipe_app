@@ -1,0 +1,78 @@
+@import url(../../Config/color.css);
+.playerstack {
+  .top_container {
+    align-items: center;
+    display: flex;
+    padding-inline: 10px;
+    margin-block: 10px;
+  }
+  .container {
+    align-items: center;
+    display: flex;
+    padding: 0px;
+  }
+  .profile_name {
+    font-size: medium;
+    color: white;
+    margin: 0px;
+    margin-left: 10px;
+  }
+  .profile_img_wrapper {
+    border: 1px solid white;
+    border-radius: 30px;
+    width: 33px;
+    height: 33px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .prof_img_style {
+    width: 30px;
+    height: 30px;
+  }
+  .recipe_post_time {
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 10px;
+  }
+  .player_wrapper {
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+    margin: 10px;
+    border-radius: 10px;
+  }
+  .bottom_Container {
+    padding-inline: 10px;
+  }
+  .icon_style {
+    color: white;
+    font-size: 22px;
+    margin-right: 15px;
+    margin-block: 10px;
+    transition: transform 10ms;
+  }
+  .icon_style:hover,
+  .Like_icon:hover {
+    transform: scale(1.1);
+  }
+  .Like_icon {
+    color: var(--orange_medium);
+    font-size: 22px;
+    margin-right: 15px;
+    margin-block: 10px;
+    transition: transform 10ms;
+  }
+  .icon_wrapper_1 {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+  }
+  .like_count {
+    color: white;
+  }
+  .recipe_name {
+    color: white;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}

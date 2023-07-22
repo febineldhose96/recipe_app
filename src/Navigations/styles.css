@@ -1,0 +1,14 @@
+.nav_ {
+  display: flex;
+  flex-grow: 1;
+}
+.nav_header {
+  display: flex;
+  height: 100px;
+  flex: 1/3;
+  min-width: 300px;
+}
+.nav_screens {
+  display: flex;
+  flex: 1;
+}
