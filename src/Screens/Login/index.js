@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from "react";
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NAV_SCREENS } from "../../Navigations/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase/config";
 import useCurrentUser from "../../hooks/useCurrentUser";
 export default function Login(params) {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -21,6 +22,8 @@ export default function Login(params) {
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredentials) => {
         alert("login successfull");
+        navigate("/", { replace: true });
+        window.history.replaceState(null, NAV_SCREENS.login);
       })
       .catch((e) => alert(e));
   };

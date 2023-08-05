@@ -1,0 +1,88 @@
+.dt_w_main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  /* background-color: #c38154; */
+  margin-left: 20px;
+}
+.dt_wrapper_1 {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  justify-content: space-between;
+}
+.dt_creatorname {
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+}
+.dt_iconColor {
+  color: white;
+  font-size: 23px;
+}
+.dt_profile_img {
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+}
+.dt_save_button {
+  margin-right: 30px;
+  border-radius: 20px;
+  border: 0px;
+  background: linear-gradient(45deg, #c38154, #b5c99a);
+  color: white;
+  font-weight: bold;
+  padding-inline: 10px;
+  font-size: 15px;
+}
+.dt_recipename {
+  color: white;
+  font-weight: bold;
+}
+.dt_recipedescription {
+  color: white;
+  font-size: 14px;
+  text-align: justify;
+  line-height: 20px;
+  opacity: 0.9;
+}
+.dt_wrapper_2 {
+  flex-direction: row;
+  display: flex;
+  margin-top: 15px;
+}
+.dt_wraper2_inner_1 {
+  display: flex;
+  color: white;
+  align-items: center;
+}
+.dt_wraper2_inner_2 {
+  color: white;
+  margin-left: 20px;
+  align-items: center;
+  display: flex;
+}
+.dt_wraper2_icon {
+  margin-right: 5px;
+}
+.dt_wrapper_3 {
+  flex-direction: row;
+  display: flex;
+  margin-top: 10%;
+}
+.dt_wrapper_3_input {
+  border: 0.5px solid black;
+  border-radius: 30px;
+  padding-left: 10px;
+  width: 70%;
+  padding-top: 10px;
+  height: 40px;
+}
+.dt_wrapper_3_butn {
+  background-color: transparent;
+  color: white;
+  border: 0px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 16px;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./styles.css";
 function VideoPlayer({ src, autoPlay = false, ...props }) {
   return (
@@ -8,4 +8,4 @@ function VideoPlayer({ src, autoPlay = false, ...props }) {
   );
 }
 
-export default VideoPlayer;
+export default memo(VideoPlayer);

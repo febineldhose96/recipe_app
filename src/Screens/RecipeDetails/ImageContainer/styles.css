@@ -1,0 +1,8 @@
+.dt_imageWrapper {
+  width: 250px;
+  border-radius: 10px;
+}
+.dt_thumbImage {
+  object-fit: contain;
+  border-radius: 10px;
+}

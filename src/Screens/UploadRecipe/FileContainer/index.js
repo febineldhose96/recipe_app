@@ -4,6 +4,8 @@ import "./styles.css";
 export default function FileContainer({
   show = true,
   type = "img",
+  multipleFile = false,
+  files = [],
   onFilePick = (val) => {},
 }) {
   const fileRef = useRef(null);
@@ -31,7 +33,7 @@ export default function FileContainer({
           type="file"
           accept={type === "img" ? "image/*" : "video/*"}
           ref={fileRef}
-          multiple={false}
+          multiple={multipleFile}
           style={{ display: "none" }}
           onChange={filePick}
         />

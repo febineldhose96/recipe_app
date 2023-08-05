@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from "react";
 import "./styles.css";
+import { FindNumberInString } from "../../../Config/regex";
 export default function InputStack({
   show = true,
+  type = "",
   placeholder = "",
   headerName = "",
   onChange = (array) => {},
@@ -12,6 +14,10 @@ export default function InputStack({
       const text = evnt.target.value;
       if (stack.length > 0) {
         const nw = [...stack];
+        const rNumber = String(text).match(FindNumberInString);
+        if (type === "ingredients" && rNumber) {
+          nw[index].amount = Number(rNumber[0]);
+        }
         nw[index].text = text;
         if (String(text).length > 0 && !nw.some((e) => e.text === "")) {
           setStack([...nw, { text: "" }]);
@@ -20,7 +26,7 @@ export default function InputStack({
         }
       }
     },
-    [stack, setStack]
+    [stack, setStack, type]
   );
   const _onBlur = useCallback(
     (evnt) => {

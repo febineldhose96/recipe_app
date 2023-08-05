@@ -1,0 +1,72 @@
+.dt_w2_main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.dt_w2_wrapper_1 {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  width: 150px;
+  justify-content: space-between;
+}
+.dt_w2_ingrednts_txt {
+  color: white;
+  margin-bottom: 40px;
+}
+.dt_w2_add_sub_butn_active {
+  color: white;
+  font-size: 20px;
+}
+.dt_w2_add_sub_butn_inactive {
+  color: white;
+  opacity: 0.5;
+  font-size: 20px;
+}
+/* wrapper 2 */
+.dt_w2_wrapper_2 {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  width: 400px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+.dt_w2_ingredints_wrapper {
+  width: 50%;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+.dt_w2_icon1 {
+  color: rgb(216, 122, 27);
+  font-size: 20px;
+  margin-right: 10px;
+}
+.dt_w2_ingrednt_name_txt {
+  font-weight: bold;
+  margin-right: 5px;
+}
+/* wrapper 3 */
+.dt_w2_wrapper_3 {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.dt_w2_instruction_wrapper {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.dt_w2_instruction_step_txt {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+.dt_w2_instruction_icon_1 {
+  color: wheat;
+  margin-right: 5px;
+}

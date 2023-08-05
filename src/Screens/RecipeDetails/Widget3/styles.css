@@ -1,0 +1,31 @@
+.dt_w3_main {
+  margin-top: 40px;
+  margin-right: 40px;
+}
+.dt_w3_head_txt {
+  color: white;
+  font-size: 18px;
+}
+.dt_w3_table {
+  border: 0.5px solid wheat;
+  border-radius: 8px;
+  padding-block: 10px;
+  margin-top: 15px;
+}
+.dt_w3_tableinnerview {
+  columns: 2;
+  padding-inline: 10px;
+  padding-block: 5px;
+}
+.dt_w3_tableinnerview_active {
+  columns: 2;
+  background-color: rgb(119, 126, 126);
+  padding-inline: 10px;
+}
+.dt_w3_nutrientName {
+  color: white;
+  font-weight: 600;
+}
+.dt_w3_nutrientamount {
+  color: white;
+}

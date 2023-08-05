@@ -5,6 +5,7 @@
     display: flex;
     padding-inline: 10px;
     margin-block: 10px;
+    color: white;
   }
   .container {
     align-items: center;

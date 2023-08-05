@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import "./styles.css";
 import VideoPlayer from "../VideoPlayer";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -6,6 +6,7 @@ import { FaRegComment, FaShare } from "react-icons/fa";
 import { TbBadge } from "react-icons/tb";
 import { db } from "../../Firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
+import moment from "moment";
 function PlayerStack({
   currentUser = null,
   src,
@@ -37,7 +38,6 @@ function PlayerStack({
     setLiked(!Liked);
     onLikeButtonPress(!Liked);
   }, [onLikeButtonPress, setLiked, Liked, currentUser, favourites, recipe_id]);
-
   return (
     <div className="playerstack">
       <div className="top_container">
@@ -49,7 +49,7 @@ function PlayerStack({
           />
         </div>
         <h3 className="profile_name">{profile_name}</h3>
-        <p className="recipe_post_time">{post_time}</p>
+        <p className="recipe_post_time">{moment.utc(post_time).fromNow()}</p>
       </div>
       <h4 className="recipe_name">{recipe_name}</h4>
       <div className="player_wrapper">
@@ -82,4 +82,4 @@ function PlayerStack({
   );
 }
 
-export default PlayerStack;
+export default memo(PlayerStack);

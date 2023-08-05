@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 import "./styles.css";
 import FileContainer from "./FileContainer";
 import InputStack from "./InputStack";
@@ -7,7 +6,11 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../../Firebase/config";
 import { addDoc, collection } from "firebase/firestore";
 import Loader from "../../Components/Loader";
+import { useSelector } from "react-redux";
 export default function UploadRecipe(params) {
+  const state = useSelector((state) => state);
+  const userId = state.profileReducer.userDetails.userId;
+  const username = state.profileReducer.userDetails.username;
   const [isLoading, setloading] = useState(false);
   const [images, setImages] = useState([]);
   const [video, setVideo] = useState([]);
@@ -16,7 +19,7 @@ export default function UploadRecipe(params) {
     recipe_description: "",
     recipe_ingredients: "",
     recipe_instructions: "",
-    recipe_number_of_portions: "",
+    recipe_number_of_portions: 1,
     recipe_preptime_hrs: 0,
     recipe_pretime_mnts: 0,
     recipe_cooktime_hrs: 0,
@@ -60,8 +63,13 @@ export default function UploadRecipe(params) {
       const image_urls = await uploadFile(imageRef, images, "image_urls");
       addDoc(collection(db, "recipes"), {
         ...data,
+        recipe_number_of_portions: Number(data.recipe_number_of_portions),
         video_urls,
         image_urls,
+        favourites: [],
+        userId,
+        username,
+        createdOn: new Date().getTime(),
       }).then((res) => {
         setloading(false);
       });
@@ -70,13 +78,11 @@ export default function UploadRecipe(params) {
       setloading(false);
     }
   };
-  return (
-    <div className="upload_recipe">
-      {isLoading ? (
-        <Loader />
-      ) : (
+  if (isLoading) return <Loader />;
+  else
+    return (
+      <div className="upload_recipe">
         <div className="main-container">
-          <AiOutlineArrowLeft />
           <div className="container-wrapper">
             <form onSubmit={handleSubmit}>
               <h4 className="plain-text1">Title</h4>
@@ -87,7 +93,11 @@ export default function UploadRecipe(params) {
                 onChange={(e) => handleInputs("recipe_name", e)}
                 required
               />
-              <FileContainer onFilePick={(f) => filePick(f, "img")} />
+              <FileContainer
+                onFilePick={(f) => filePick(f, "img")}
+                multipleFile={true}
+                files={images}
+              />
               <FileContainer type="video" onFilePick={filePick} />
               <h4 className="plain-text1">Description</h4>
               <textarea
@@ -97,6 +107,7 @@ export default function UploadRecipe(params) {
               />
               <InputStack
                 headerName="Ingredients"
+                type="ingredients"
                 placeholder="Add one or paste multiple items"
                 onChange={(e) => handleInputs("recipe_ingredients", e)}
               />
@@ -167,7 +178,6 @@ export default function UploadRecipe(params) {
             </form>
           </div>
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
 }

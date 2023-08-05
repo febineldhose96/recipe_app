@@ -12,13 +12,13 @@ function Header({ onTabChanges = () => {} }) {
     {
       name: "Search",
       active: false,
-      page: NAV_SCREENS.uploadrecipe,
+      page: NAV_SCREENS.home,
       ICON: BsSearch,
     },
     {
       name: "Category",
       active: false,
-      page: NAV_SCREENS.uploadrecipe,
+      page: NAV_SCREENS.login,
       ICON: MdOutlineExplore,
     },
     {
@@ -30,7 +30,7 @@ function Header({ onTabChanges = () => {} }) {
     {
       name: "Create",
       active: false,
-      page: NAV_SCREENS.home,
+      page: NAV_SCREENS.uploadrecipe,
       ICON: BiBookAdd,
     },
     {

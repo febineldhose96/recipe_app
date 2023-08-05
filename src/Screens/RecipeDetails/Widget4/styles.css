@@ -1,0 +1,33 @@
+.dt_w4_main {
+  margin-top: 40px;
+  margin-right: 40px;
+}
+.dt_w4_head_txt {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+.dt_w4_view {
+  color: white;
+  flex-direction: row;
+  display: flex;
+  columns: 3;
+  justify-content: last baseline;
+  flex-wrap: wrap;
+}
+.dt_w4_container {
+  height: 230px;
+  width: 170px;
+  background-color: red;
+  margin-right: 30px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.dt_w4_video_container {
+  height: 230px;
+  width: 170px;
+}
+.dt_w4_recipename {
+  color: white;
+  font-size: 16px;
+}
