@@ -24,14 +24,13 @@ export default function SignUp(params) {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
-        const user = userCredential.user;
         addDoc(collection(db, "users"), {
           username: userData.username,
           email: userData.email,
           firstname: userData.firstname,
           secondname: userData.secondname,
           password: userData.password,
-          userId: user.uid,
+          saved_recipes: [],
         })
           .then((data) => {
             alert("user created successfully");

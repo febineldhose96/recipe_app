@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import "./styles.css";
-function VideoPlayer({ src, autoPlay = false, ...props }) {
+function VideoPlayer({ src, autoPlay = false, onClick = () => {}, ...props }) {
   return (
-    <div>
+    <div onClick={onClick}>
       <video src={src} {...props} className="videoplayer" autoPlay={autoPlay} />
     </div>
   );

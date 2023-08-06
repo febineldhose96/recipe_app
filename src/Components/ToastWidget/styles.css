@@ -1,0 +1,10 @@
+.videoplayer {
+  width: 400px;
+  height: 600px;
+}
+@media (min-width=767px) {
+  .videoplayer {
+    width: 30vw;
+    height: 30vh;
+  }
+}

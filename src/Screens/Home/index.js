@@ -10,13 +10,15 @@ import { NAV_SCREENS } from "../../Navigations/config";
 import { getSingleDocument } from "../../Firebase/functions";
 import { setRecipeDetails } from "../RecipeDetails/reducer";
 import { getRecipes } from "./reducer";
+import { toastController } from "../../Components/ToastWidget";
+import { Messages } from "../../Config/messages";
 function Home(props) {
   const userDetails = useCurrentUser();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const snapShot = state.homeReducer.recipes;
-  const userId = state.profileReducer.userDetails.userId;
+  const userId = state.profileReducer.userDetails.id;
   useEffect(() => {
     const _q = query(collection(db, "recipes"));
     const unsubscribe = onSnapshot(_q, (querySnapShot) => {
@@ -26,6 +28,7 @@ function Home(props) {
           recipe_arr.push({ ...doc.data(), id: doc.id });
         },
         (error) => {
+          toastController.error(Messages.error_Messages.normal);
           console.log("snapshot error", error);
         }
       );
@@ -46,11 +49,7 @@ function Home(props) {
       <div className="home_item_wrapper">
         {snapShot.map((recipe, index) => {
           return (
-            <div
-              key={index}
-              className="home_item_"
-              onClick={() => handleItemClick(recipe)}
-            >
+            <div key={index} className="home_item_">
               <PlayerStack
                 src={recipe.video_urls[0]}
                 controls={false}
@@ -64,6 +63,7 @@ function Home(props) {
                 profile_name={recipe.username}
                 post_time={recipe.createdOn}
                 recipe_props={recipe}
+                onVideoClick={() => handleItemClick(recipe)}
               />
             </div>
           );

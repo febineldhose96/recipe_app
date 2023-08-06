@@ -9,6 +9,8 @@ export default function Widget1({
   recipe_description = "" | undefined,
   recipe_prepTime = 0,
   recipe_cookTime = 0,
+  onSaveClick = () => {},
+  onPostBtnClick = () => {},
 }) {
   return (
     <div className="dt_w_main">
@@ -18,7 +20,7 @@ export default function Widget1({
           {creatorname}
         </p>
         <div>
-          <button className="dt_save_button">
+          <button className="dt_save_button" onClick={onSaveClick}>
             Save
             <TbBadge className="dt_iconColor" />
           </button>
@@ -38,7 +40,9 @@ export default function Widget1({
       </div>
       <div className="dt_wrapper_3">
         <textarea className="dt_wrapper_3_input" placeholder="add a comment" />
-        <button className="dt_wrapper_3_butn">post</button>
+        <button className="dt_wrapper_3_butn" onClick={onPostBtnClick}>
+          post
+        </button>
       </div>
     </div>
   );

@@ -16,18 +16,26 @@
   flex-wrap: wrap;
 }
 .dt_w4_container {
-  height: 230px;
-  width: 170px;
-  background-color: red;
   margin-right: 30px;
   margin-top: 20px;
   border-radius: 10px;
+  border: 0.5px solid wheat;
+  padding-block: 10px;
+  position: relative;
 }
 .dt_w4_video_container {
-  height: 230px;
+  height: 200px;
   width: 170px;
 }
 .dt_w4_recipename {
   color: white;
   font-size: 16px;
+  margin-left: 5px;
+}
+.dt_w4_badgeicon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 25px;
+  transform: rotate(180deg);
 }

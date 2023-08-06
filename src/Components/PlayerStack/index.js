@@ -20,6 +20,7 @@ function PlayerStack({
   favourites = [],
   recipe_props = {},
   onLikeButtonPress = () => {},
+  onVideoClick = () => {},
   ...props
 }) {
   const [Liked, setLiked] = useState(isLiked);
@@ -53,7 +54,7 @@ function PlayerStack({
       </div>
       <h4 className="recipe_name">{recipe_name}</h4>
       <div className="player_wrapper">
-        <VideoPlayer src={src} controls={controls} />
+        <VideoPlayer src={src} controls={controls} onClick={onVideoClick} />
       </div>
       <div className="bottom_Container">
         <div className="container">
@@ -71,7 +72,7 @@ function PlayerStack({
           <FaRegComment className="icon_style" />
           <FaShare className="icon_style" />
           <div className="icon_wrapper_1">
-            <TbBadge className="icon_style" />
+            <TbBadge className="icon_style_badge" />
           </div>
         </div>
         <p className="like_count">

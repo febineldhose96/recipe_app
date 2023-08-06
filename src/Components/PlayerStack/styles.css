@@ -52,6 +52,17 @@
     margin-block: 10px;
     transition: transform 10ms;
   }
+  .icon_style_badge {
+    color: white;
+    font-size: 25px;
+    margin-right: 15px;
+    margin-block: 10px;
+    transition: transform 10ms;
+    transform: rotate(180deg);
+  }
+  .icon_style_badge {
+    transform: rotate(180deg);
+  }
   .icon_style:hover,
   .Like_icon:hover {
     transform: scale(1.1);
