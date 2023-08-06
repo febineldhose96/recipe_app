@@ -6,26 +6,49 @@ import Widget1 from "./Widget1";
 import Widget2 from "./Widget2";
 import Widget3 from "./Widget3";
 import Widget4 from "./Widget4";
-import { doc, updateDoc } from "@firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "@firebase/firestore";
 import { db } from "../../Firebase/config";
-import ToastWidget, { toastController } from "../../Components/ToastWidget";
+import { toastController } from "../../Components/ToastWidget";
 import { Messages } from "../../Config/messages";
 export default function RecipeDetails(props) {
   const state = useSelector((state) => state);
   const recipe = state.recipeDetails.recipe_details;
+  const username = state.profileReducer.userDetails.username;
   const userId = state.profileReducer.userDetails.id;
   const profile_imageUrl =
     state.profileReducer.userDetails.profile_imageUrl ?? "";
-  const saved_recipes = state.profileReducer.userDetails.fav_recipes ?? [];
-  const handleSaveButn = () => {
+  // saving the recipe
+  const handleSaveButn = (obj) => {
+    // data bindings
+    const options = obj ?? recipe.id;
     const docRef = doc(db, `users/${userId}`);
-    updateDoc(docRef, { saved_recipes: [...saved_recipes, recipe.id] })
+    updateDoc(docRef, { saved_recipes: arrayUnion(options) })
       .then((e) => {
         toastController.success(Messages.success_Messages.recipe_saved);
       })
       .catch((e) => {
         toastController.error(Messages.error_Messages.normal);
         console.log("saving recipe erorr", e);
+      });
+  };
+  // commenting on the recipe
+  const handleComment = (comment) => {
+    // data bindings
+    const options = {
+      comment,
+      likes: 0,
+      userid: userId,
+      userImageUrl: profile_imageUrl,
+      username,
+    };
+    const docRef = doc(db, `recipes/${recipe.id}`);
+    updateDoc(docRef, {
+      comments: arrayUnion(options),
+    })
+      .then((e) => {})
+      .catch((e) => {
+        toastController.error(Messages.error_Messages.normal);
+        console.log("comment post recipe erorr", e);
       });
   };
   return (
@@ -37,7 +60,7 @@ export default function RecipeDetails(props) {
           profile_Url={profile_imageUrl}
           recipename={recipe.recipe_name}
           recipe_description={recipe.recipe_description}
-          onPostBtnClick={() => {}}
+          onPostBtnClick={handleComment}
           onSaveClick={handleSaveButn}
         />
       </div>
@@ -49,7 +72,7 @@ export default function RecipeDetails(props) {
         />
         <Widget3 />
       </div>
-      <Widget4 />
+      <Widget4 onSaveButnClick={handleSaveButn} />
     </div>
   );
 }

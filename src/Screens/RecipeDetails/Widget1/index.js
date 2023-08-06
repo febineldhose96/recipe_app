@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import "./styles.css";
 import { FaClock, FaShare } from "react-icons/fa";
 import { TbBadge, TbChefHat } from "react-icons/tb";
@@ -12,6 +12,20 @@ export default function Widget1({
   onSaveClick = () => {},
   onPostBtnClick = () => {},
 }) {
+  const [comment, setComment] = useState(null);
+  const handleInputChange = useCallback(
+    ({ target }) => {
+      setComment(target.value);
+    },
+    [setComment]
+  );
+  const handlePost = useCallback(() => {
+    onPostBtnClick(comment);
+  }, [onPostBtnClick, comment]);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    e.target.reset();
+  };
   return (
     <div className="dt_w_main">
       <div className="dt_wrapper_1">
@@ -38,12 +52,18 @@ export default function Widget1({
           mins
         </div>
       </div>
-      <div className="dt_wrapper_3">
-        <textarea className="dt_wrapper_3_input" placeholder="add a comment" />
-        <button className="dt_wrapper_3_butn" onClick={onPostBtnClick}>
+
+      <form className="dt_wrapper_3" onSubmit={onSubmit}>
+        <textarea
+          className="dt_wrapper_3_input"
+          placeholder="add a comment"
+          onChange={handleInputChange}
+        />
+
+        <button className="dt_wrapper_3_butn" onClick={handlePost}>
           post
         </button>
-      </div>
+      </form>
     </div>
   );
 }
