@@ -4,6 +4,7 @@ import { FaClock, FaShare } from "react-icons/fa";
 import { TbBadge, TbChefHat } from "react-icons/tb";
 export default function Widget1({
   creatorname = "",
+  recipeID = "",
   profile_Url = "",
   recipename = "" | undefined,
   recipe_description = "" | undefined,
@@ -34,7 +35,10 @@ export default function Widget1({
           {creatorname}
         </p>
         <div>
-          <button className="dt_save_button" onClick={onSaveClick}>
+          <button
+            className="dt_save_button"
+            onClick={() => onSaveClick(recipeID)}
+          >
             Save
             <TbBadge className="dt_iconColor" />
           </button>

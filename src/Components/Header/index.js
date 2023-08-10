@@ -24,7 +24,7 @@ function Header({ onTabChanges = () => {} }) {
     {
       name: "Saved",
       active: false,
-      page: NAV_SCREENS.home,
+      page: NAV_SCREENS.savedRecipes,
       ICON: AiFillHeart,
     },
     {
@@ -36,7 +36,7 @@ function Header({ onTabChanges = () => {} }) {
     {
       name: "Profile",
       active: false,
-      page: NAV_SCREENS.home,
+      page: NAV_SCREENS.profile,
       ICON: BsPersonCircle,
     },
   ]);

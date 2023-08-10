@@ -14,23 +14,31 @@ import Home from "../Screens/Home";
 import Header from "../Components/Header";
 import Profile from "../Screens/Profile";
 import RecipeDetails from "../Screens/RecipeDetails";
-function MainNav(params) {
+import SavedRecipes from "../Screens/SavedRecipes";
+import Launcher from "../Screens/Launcher";
+function MainNav({ isLoggedIn = false }) {
   return (
     <NavigationProvider>
       <div className="nav_">
-        <div className="nav_header">
-          <Header />
-        </div>
+        {isLoggedIn ? (
+          <div className="nav_header">
+            <Header />
+          </div>
+        ) : null}
         <div className="nav_screens">
           <Routes>
-            <Route path={NAV_SCREENS.signup} element={<SignUp />} />
+            <Route
+              path={NAV_SCREENS.home}
+              element={isLoggedIn ? <Home /> : <Launcher />}
+            />
             <Route path={NAV_SCREENS.login} element={<Login />} />
-            <Route path={NAV_SCREENS.home} element={<Home />} />
+            <Route path={NAV_SCREENS.signup} element={<SignUp />} />
             <Route
               path={NAV_SCREENS.recipe_details}
               element={<RecipeDetails />}
             />
             <Route path={NAV_SCREENS.profile} element={<Profile />} />
+            <Route path={NAV_SCREENS.savedRecipes} element={<SavedRecipes />} />
             <Route path={NAV_SCREENS.uploadrecipe} element={<UploadRecipe />} />
             <Route path="*" element={<Pof404 />} />
           </Routes>

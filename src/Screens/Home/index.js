@@ -3,7 +3,6 @@ import { collection, doc, onSnapshot, query } from "firebase/firestore";
 import { db } from "../../Firebase/config";
 import "./styles.css";
 import PlayerStack from "../../Components/PlayerStack";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { NAV_SCREENS } from "../../Navigations/config";
@@ -13,7 +12,6 @@ import { getRecipes } from "./reducer";
 import { toastController } from "../../Components/ToastWidget";
 import { Messages } from "../../Config/messages";
 function Home(props) {
-  const userDetails = useCurrentUser();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -35,7 +33,7 @@ function Home(props) {
       dispatch(getRecipes(recipe_arr));
     });
     return unsubscribe;
-  }, [dispatch, userDetails]);
+  }, [dispatch]);
 
   const handleItemClick = async (recipe) => {
     // handle single recipe item click

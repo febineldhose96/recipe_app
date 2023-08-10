@@ -20,7 +20,7 @@ export default function RecipeDetails(props) {
   // saving the recipe
   const handleSaveButn = (obj) => {
     // data bindings
-    const options = obj ?? recipe.id;
+    const options = obj;
     const docRef = doc(db, `users/${userId}`);
     updateDoc(docRef, { saved_recipes: arrayUnion(options) })
       .then((e) => {
@@ -57,6 +57,7 @@ export default function RecipeDetails(props) {
         <ImageContainer imageUrls={recipe.image_urls} />
         <Widget1
           creatorname={recipe.username}
+          recipeID={recipe.id}
           profile_Url={profile_imageUrl}
           recipename={recipe.recipe_name}
           recipe_description={recipe.recipe_description}

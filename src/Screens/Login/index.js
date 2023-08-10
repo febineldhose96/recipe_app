@@ -4,9 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { NAV_SCREENS } from "../../Navigations/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase/config";
-import useCurrentUser from "../../hooks/useCurrentUser";
+import { useDispatch } from "react-redux";
+import { updateUserDetails } from "../Profile/reducer";
+import { toastController } from "../../Components/ToastWidget";
+import { Messages } from "../../Config/messages";
 export default function Login(params) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -18,17 +22,25 @@ export default function Login(params) {
     [setUserData]
   );
   const handleSignIn = (e) => {
+    dispatch(updateUserDetails({ isLoading: true }));
     e.preventDefault();
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredentials) => {
-        alert("login successfull");
-        navigate("/", { replace: true });
+        const options = {
+          isLoggedIn: true,
+          isLoading: false,
+          userDetails: { id: userCredentials.user.uid },
+        };
+        dispatch(updateUserDetails(options));
+        navigate(NAV_SCREENS.home, { replace: true });
         window.history.replaceState(null, NAV_SCREENS.login);
+        toastController.success(Messages.success_Messages.login);
       })
-      .catch((e) => alert(e));
+      .catch((e) => {
+        dispatch(updateUserDetails({ isLoading: false }));
+        toastController.error(Messages.error_Messages.invalid_password);
+      });
   };
-  const user = useCurrentUser();
-  console.log(user);
   return (
     <div className="login_up">
       <div className="login_wrapper">

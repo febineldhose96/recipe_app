@@ -15,6 +15,7 @@ export default function Widget3({
         {nutrients.map((nutrient, index) => {
           return (
             <div
+              key={index}
               className={
                 index % 2 === 0
                   ? "dt_w3_tableinnerview"
