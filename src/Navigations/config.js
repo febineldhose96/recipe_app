@@ -7,5 +7,7 @@ const NAV_SCREENS = {
   recipe_details: "/recipedetails/:id",
   profile: "/profile",
   savedRecipes: "/savedrecipes",
+  category: "/categories",
+  test: "/test",
 };
 export { NAV_SCREENS };

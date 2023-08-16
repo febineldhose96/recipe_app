@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { auth, db } from "../Firebase/config";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserDetails } from "../Screens/Profile/reducer";
 
 export default function useCurrentUser() {
   const state = useSelector((state) => state);
-  const isLoggedIn = state.profileReducer.isLoggedIn;
-  const isLoading = state.profileReducer.isLoading;
+  const { changeCount, isLoading, isLoggedIn } = state.profileReducer;
   const dispatch = useDispatch();
   useEffect(() => {
     const storedData = localStorage.getItem("userdata");
@@ -17,7 +16,8 @@ export default function useCurrentUser() {
       isLoggedIn: false,
       userDetails: {},
     };
-    if (pareseData) {
+    console.log("worde");
+    if (pareseData && changeCount === 0) {
       const options = {
         isLoggedIn: true,
         isLoading: false,
@@ -32,17 +32,35 @@ export default function useCurrentUser() {
               collection(db, "users"),
               where("userId", "==", userLoggedIn.uid)
             );
-            const nwDta = await getDocs(q);
-            const _fdata =
-              nwDta.docs.map((e) => ({ ...e.data(), id: e.id }))[0] ?? {};
-            delete _fdata.password;
-            const options = {
-              isLoggedIn: true,
-              isLoading: false,
-              userDetails: { userId: userLoggedIn.uid, ..._fdata },
-            };
-            dispatch(updateUserDetails(options));
-            localStorage.setItem("userdata", JSON.stringify(options));
+            const unsubscribe = onSnapshot(
+              q,
+              (querySnapShot) => {
+                const user_arr = [];
+                querySnapShot.forEach(
+                  (doc) => {
+                    user_arr.push({ ...doc.data(), id: doc.id });
+                  },
+                  (error) => {
+                    console.log("snapshot error", error);
+                  }
+                );
+                delete user_arr[0].password;
+                const options = {
+                  isLoggedIn: true,
+                  isLoading: false,
+                  userDetails: user_arr[0],
+                };
+                dispatch(updateUserDetails(options));
+                localStorage.setItem(
+                  "userdata",
+                  JSON.stringify(options.userDetails)
+                );
+              },
+              (error) => {
+                console.log("useCurrentUser error", error);
+              }
+            );
+            return unsubscribe;
           } else {
             dispatch(updateUserDetails(options_default));
           }
@@ -52,6 +70,6 @@ export default function useCurrentUser() {
         console.log("useCurrentUser error", error);
       }
     }
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch, isLoggedIn, changeCount]);
   return { isLoading, isLoggedIn };
 }

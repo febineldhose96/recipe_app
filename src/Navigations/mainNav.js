@@ -16,6 +16,8 @@ import Profile from "../Screens/Profile";
 import RecipeDetails from "../Screens/RecipeDetails";
 import SavedRecipes from "../Screens/SavedRecipes";
 import Launcher from "../Screens/Launcher";
+import Category from "../Screens/Category";
+import TestPage from "../Screens/Home/test";
 function MainNav({ isLoggedIn = false }) {
   return (
     <NavigationProvider>
@@ -40,7 +42,9 @@ function MainNav({ isLoggedIn = false }) {
             <Route path={NAV_SCREENS.profile} element={<Profile />} />
             <Route path={NAV_SCREENS.savedRecipes} element={<SavedRecipes />} />
             <Route path={NAV_SCREENS.uploadrecipe} element={<UploadRecipe />} />
+            <Route path={NAV_SCREENS.category} element={<Category />} />
             <Route path="*" element={<Pof404 />} />
+            <Route path={NAV_SCREENS.test} element={<TestPage />} />
           </Routes>
         </div>
       </div>

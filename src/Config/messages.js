@@ -6,8 +6,10 @@ const Messages = {
   },
   success_Messages: {
     recipe_saved: "recipe saved",
+    recipe_removed: "recipe removed successfully",
     login: "Login succesfully",
     logout: "Logout Successfully",
+    signup: "Sign up successfully",
   },
 };
 export { Messages };

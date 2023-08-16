@@ -3,6 +3,7 @@ const initialState = {
   userDetails: {},
   isLoggedIn: false,
   isLoading: false,
+  changeCount: 0,
 };
 
 const ProfileSlice = createSlice({
@@ -21,8 +22,20 @@ const ProfileSlice = createSlice({
         ...action.payload,
       };
     },
+    ChangeUserDetails: (state, action) => {
+      return {
+        ...state,
+        changeCount: state.changeCount + 1,
+      };
+    },
   },
 });
-const { updateUserDetails, updateProfileReducer, onLogout } =
+const { updateUserDetails, updateProfileReducer, onLogout, ChangeUserDetails } =
   ProfileSlice.actions;
-export { ProfileSlice, updateUserDetails, updateProfileReducer, onLogout };
+export {
+  ProfileSlice,
+  updateUserDetails,
+  updateProfileReducer,
+  onLogout,
+  ChangeUserDetails,
+};

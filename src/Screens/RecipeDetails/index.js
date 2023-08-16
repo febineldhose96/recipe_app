@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import ImageContainer from "./ImageContainer";
 import Widget1 from "./Widget1";
@@ -10,8 +10,10 @@ import { doc, updateDoc, arrayUnion } from "@firebase/firestore";
 import { db } from "../../Firebase/config";
 import { toastController } from "../../Components/ToastWidget";
 import { Messages } from "../../Config/messages";
+import { ChangeUserDetails } from "../Profile/reducer";
 export default function RecipeDetails(props) {
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
   const recipe = state.recipeDetails.recipe_details;
   const username = state.profileReducer.userDetails.username;
   const userId = state.profileReducer.userDetails.id;
@@ -24,6 +26,7 @@ export default function RecipeDetails(props) {
     const docRef = doc(db, `users/${userId}`);
     updateDoc(docRef, { saved_recipes: arrayUnion(options) })
       .then((e) => {
+        dispatch(ChangeUserDetails());
         toastController.success(Messages.success_Messages.recipe_saved);
       })
       .catch((e) => {

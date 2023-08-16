@@ -18,7 +18,7 @@ function Header({ onTabChanges = () => {} }) {
     {
       name: "Category",
       active: false,
-      page: NAV_SCREENS.login,
+      page: NAV_SCREENS.category,
       ICON: MdOutlineExplore,
     },
     {

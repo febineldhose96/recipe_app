@@ -1,11 +1,39 @@
-import React, { memo } from "react";
+import React, { forwardRef, memo } from "react";
 import "./styles.css";
-function VideoPlayer({ src, autoPlay = false, onClick = () => {}, ...props }) {
+const VideoPlayer = forwardRef(function (
+  {
+    src,
+    videoID,
+    autoPlay = false,
+    muted,
+    loop = false,
+    playing = false,
+    onClick = () => {},
+    mainclassStyle,
+    playerStyle = "videoplayer",
+    onMouseOver = () => {},
+    onMouseOut = () => {},
+    onFocus = () => {},
+    onCanPlay = () => {},
+    ...props
+  },
+  ref
+) {
   return (
-    <div onClick={onClick}>
-      <video src={src} {...props} className="videoplayer" autoPlay={autoPlay} />
-    </div>
+    <video
+      id={videoID}
+      loop={loop}
+      className={playerStyle}
+      ref={ref}
+      src={src}
+      muted={muted}
+      onClick={onClick}
+      autoPlay={true}
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      onCanPlay={onCanPlay}
+    />
   );
-}
+});
 
 export default memo(VideoPlayer);

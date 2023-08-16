@@ -8,6 +8,7 @@ import { db } from "../../Firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
 import moment from "moment";
 function PlayerStack({
+  videoID,
   currentUser = null,
   src,
   controls = false,
@@ -21,6 +22,8 @@ function PlayerStack({
   recipe_props = {},
   onLikeButtonPress = () => {},
   onVideoClick = () => {},
+  onVideoFocus = () => {},
+  onVideoBlur = () => {},
   ...props
 }) {
   const [Liked, setLiked] = useState(isLiked);
@@ -54,7 +57,16 @@ function PlayerStack({
       </div>
       <h4 className="recipe_name">{recipe_name}</h4>
       <div className="player_wrapper">
-        <VideoPlayer src={src} controls={controls} onClick={onVideoClick} />
+        <VideoPlayer
+          videoID={videoID}
+          src={src}
+          controls={controls}
+          loop={true}
+          muted={true}
+          onClick={onVideoClick}
+          onMouseOver={onVideoFocus}
+          onMouseOut={onVideoBlur}
+        />
       </div>
       <div className="bottom_Container">
         <div className="container">

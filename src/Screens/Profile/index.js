@@ -1,4 +1,3 @@
-import { signOut } from "firebase/auth";
 import React from "react";
 import { auth } from "../../Firebase/config";
 import { toastController } from "../../Components/ToastWidget";
@@ -17,7 +16,8 @@ function Profile() {
       isLoggedIn: false,
       isLoading: false,
     };
-    signOut(auth)
+    auth
+      .signOut()
       .then((succ) => {
         navigate(NAV_SCREENS.home, { replace: true });
         window.history.replaceState(null, NAV_SCREENS.profile);

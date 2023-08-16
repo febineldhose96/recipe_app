@@ -11,12 +11,18 @@ import { setRecipeDetails } from "../RecipeDetails/reducer";
 import { getRecipes } from "./reducer";
 import { toastController } from "../../Components/ToastWidget";
 import { Messages } from "../../Config/messages";
+import ScrollableList from "../../Components/ScrollableList";
 function Home(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const snapShot = state.homeReducer.recipes;
   const userId = state.profileReducer.userDetails.id;
+  const qVideos = document.querySelectorAll("video_home");
+  const calcVideoNumber = (scrollPositionY) =>
+    Math.floor(scrollPositionY / 700);
+  const stopPlaying = (videos) =>
+    Array.from(videos).forEach((video) => video.pause());
   useEffect(() => {
     const _q = query(collection(db, "recipes"));
     const unsubscribe = onSnapshot(_q, (querySnapShot) => {
@@ -45,27 +51,33 @@ function Home(props) {
   return (
     <div className="home_main">
       <div className="home_item_wrapper">
-        {snapShot.map((recipe, index) => {
-          return (
-            <div key={index} className="home_item_">
-              <PlayerStack
-                src={recipe.video_urls[0]}
-                controls={false}
-                autoPlay={index === 0}
-                recipe_name={recipe.recipe_name}
-                recipe_id={recipe.id}
-                like_count={recipe?.favourites.length}
-                favourites={recipe.favourites}
-                currentUser={userId}
-                isLiked={recipe?.favourites?.includes(userId) ?? false}
-                profile_name={recipe.username}
-                post_time={recipe.createdOn}
-                recipe_props={recipe}
-                onVideoClick={() => handleItemClick(recipe)}
-              />
-            </div>
-          );
-        })}
+        <ScrollableList
+          data={[...snapShot, ...snapShot, ...snapShot, ...snapShot]}
+          onScroll={(event) => {
+            stopPlaying(qVideos);
+            qVideos[calcVideoNumber(event.currentTarget.scrollTop)]?.play();
+          }}
+          renderItem={({ item, index }) => {
+            return (
+              <div key={index} className="home_item_">
+                <PlayerStack
+                  videoID="video_home"
+                  src={item.video_urls[0]}
+                  recipe_name={item.recipe_name}
+                  recipe_id={item.id}
+                  like_count={item?.favourites.length}
+                  favourites={item.favourites}
+                  currentUser={userId}
+                  isLiked={item?.favourites?.includes(userId) ?? false}
+                  profile_name={item.username}
+                  post_time={item.createdOn}
+                  recipe_props={item}
+                  onVideoClick={() => handleItemClick(item)}
+                />
+              </div>
+            );
+          }}
+        />
       </div>
     </div>
   );

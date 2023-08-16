@@ -1,11 +1,17 @@
 import React, { useCallback, useState } from "react";
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NAV_SCREENS } from "../../Navigations/config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../Firebase/config";
 import { collection, addDoc } from "firebase/firestore";
+import { toastController } from "../../Components/ToastWidget";
+import { useDispatch } from "react-redux";
+import { updateUserDetails } from "../Profile/reducer";
+import { Messages } from "../../Config/messages";
 export default function SignUp(params) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     firstname: "",
     secondname: "",
@@ -31,12 +37,25 @@ export default function SignUp(params) {
           secondname: userData.secondname,
           password: userData.password,
           saved_recipes: [],
+          userId: userCredential.user.uid,
+          profile_imageUrl: null,
         })
-          .then((data) => {
-            alert("user created successfully");
+          .then((userCredentials) => {
             setUserData((e) => Object.keys(e).forEach((i) => (e[i] = "")));
+            const options = {
+              isLoggedIn: true,
+              isLoading: false,
+              userDetails: { id: userCredential.user.uid },
+            };
+            dispatch(updateUserDetails(options));
+            navigate(NAV_SCREENS.home, { replace: true });
+            window.history.replaceState(null, NAV_SCREENS.login);
+            toastController.success(Messages.success_Messages.signup);
           })
-          .catch((e) => alert(e));
+          .catch((e) => {
+            dispatch(updateUserDetails({ isLoading: false }));
+            toastController.error(Messages.error_Messages.invalid_password);
+          });
       })
       .catch((e) => alert(e));
   };

@@ -1,3 +1,82 @@
 .sr_main {
-  background-color: aquamarine;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.sr_saved_textname {
+  color: white;
+  margin-block: 25px;
+}
+.sr_search_Icon {
+  color: white;
+  margin-right: 10px;
+  font-size: 22px;
+}
+.sr_search_input {
+  width: 50vw;
+  border: 0;
+  border-radius: 10px;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 5px;
+}
+.sr_search_input:hover,
+.sr_search_input:focus {
+  padding-left: 10px;
+  border: 0;
+  padding-right: 5px;
+}
+.sr_recipes_textname {
+  color: white;
+  margin-top: 95px;
+}
+.sr_player_stack {
+  display: flex;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.sr_player_main {
+  display: flex;
+  border: 0.5px solid wheat;
+  border-radius: 10px;
+  flex-direction: column;
+  padding-top: 80px;
+  position: relative;
+  margin-right: 40px;
+  margin-top: 40px;
+}
+.sr_player_video_style {
+  width: 230px;
+}
+.sr_recipe_name {
+  color: white;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  font-size: 16px;
+}
+.sr_delete_icon {
+  color: white;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 22px;
+}
+.sr_top_box {
+  display: flex;
+  flex-direction: row;
+}
+.sr_empty_view {
+  display: flex;
+  flex: 1;
+  height: 40vh;
+  color: white;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width=767px) {
+  .sr_player_video_style {
+    background-color: red;
+  }
 }

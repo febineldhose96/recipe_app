@@ -9,7 +9,7 @@ import Loader from "../../Components/Loader";
 import { useSelector } from "react-redux";
 export default function UploadRecipe(params) {
   const state = useSelector((state) => state);
-  const userId = state.profileReducer.userDetails.userId;
+  const userId = state.profileReducer.userDetails.id;
   const username = state.profileReducer.userDetails.username;
   const [isLoading, setloading] = useState(false);
   const [images, setImages] = useState([]);
