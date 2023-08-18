@@ -4,10 +4,9 @@ const VideoPlayer = forwardRef(function (
   {
     src,
     videoID,
-    autoPlay = false,
     muted,
     loop = false,
-    playing = false,
+    autoPlay = false,
     onClick = () => {},
     mainclassStyle,
     playerStyle = "videoplayer",
@@ -28,7 +27,7 @@ const VideoPlayer = forwardRef(function (
       src={src}
       muted={muted}
       onClick={onClick}
-      autoPlay={true}
+      autoPlay={autoPlay}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onCanPlay={onCanPlay}

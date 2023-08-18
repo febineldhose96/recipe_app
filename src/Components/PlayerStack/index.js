@@ -17,6 +17,7 @@ function PlayerStack({
   post_time = "",
   like_count = 44,
   isLiked = false,
+  autoPlay = false,
   recipe_id = "",
   favourites = [],
   recipe_props = {},
@@ -58,6 +59,7 @@ function PlayerStack({
       <h4 className="recipe_name">{recipe_name}</h4>
       <div className="player_wrapper">
         <VideoPlayer
+          autoPlay={autoPlay}
           videoID={videoID}
           src={src}
           controls={controls}
@@ -66,6 +68,7 @@ function PlayerStack({
           onClick={onVideoClick}
           onMouseOver={onVideoFocus}
           onMouseOut={onVideoBlur}
+          // onCanPlay={(e) => e.target.pause()}
         />
       </div>
       <div className="bottom_Container">

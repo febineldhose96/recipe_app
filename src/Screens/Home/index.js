@@ -18,9 +18,9 @@ function Home(props) {
   const state = useSelector((state) => state);
   const snapShot = state.homeReducer.recipes;
   const userId = state.profileReducer.userDetails.id;
-  const qVideos = document.querySelectorAll("video_home");
+  const qVideos = document.querySelectorAll("video");
   const calcVideoNumber = (scrollPositionY) =>
-    Math.floor(scrollPositionY / 700);
+    Math.floor(scrollPositionY / 400);
   const stopPlaying = (videos) =>
     Array.from(videos).forEach((video) => video.pause());
   useEffect(() => {
@@ -61,8 +61,9 @@ function Home(props) {
             return (
               <div key={index} className="home_item_">
                 <PlayerStack
-                  videoID="video_home"
+                  videoID="video"
                   src={item.video_urls[0]}
+                  // autoPlay={index === 0}
                   recipe_name={item.recipe_name}
                   recipe_id={item.id}
                   like_count={item?.favourites.length}

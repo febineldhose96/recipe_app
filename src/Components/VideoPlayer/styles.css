@@ -1,6 +1,6 @@
 .videoplayer {
-  width: 400px;
-  height: 600px;
+  width: 450px;
+  height: 300px;
   object-fit: contain;
 }
 @media (min-width=767px) {
