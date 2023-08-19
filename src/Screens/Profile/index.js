@@ -12,7 +12,7 @@ function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const username = state.profileReducer.userDetails.username;
-  const userId = state.profileReducer.userDetails.id;
+  // const userId = state.profileReducer.userDetails.id;
   const profile_imageUrl =
     state.profileReducer.userDetails.profile_imageUrl ?? "";
   const handleLogout = () => {
@@ -39,7 +39,7 @@ function Profile() {
     <div className="pr_main">
       <h3 className="pr_profiletitle"> Profile</h3>
       <div>
-        <img src={profile_imageUrl} className="pr_profileImg" />
+        <img src={profile_imageUrl} className="pr_profileImg" alt="prof_img" />
         <h3 className="pr_profiletitle">{username}</h3>
       </div>
       <div>

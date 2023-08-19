@@ -16,7 +16,6 @@ export default function useCurrentUser() {
       isLoggedIn: false,
       userDetails: {},
     };
-    console.log("worde");
     if (pareseData && changeCount === 0) {
       const options = {
         isLoggedIn: true,

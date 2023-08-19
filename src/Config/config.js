@@ -1,0 +1,3 @@
+const SECRET_KEY_NINJA_API = "XJnvLfJJFsIotqdyEFZ8Mw==Ju1uqLeQBKnVC9Qz";
+
+export { SECRET_KEY_NINJA_API };
