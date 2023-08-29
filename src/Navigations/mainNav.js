@@ -17,7 +17,7 @@ import RecipeDetails from "../Screens/RecipeDetails";
 import SavedRecipes from "../Screens/SavedRecipes";
 import Launcher from "../Screens/Launcher";
 import Category from "../Screens/Category";
-import TestPage from "../Screens/Home/test";
+import TestPage from "../Screens/Home/home";
 function MainNav({ isLoggedIn = false }) {
   return (
     <NavigationProvider>

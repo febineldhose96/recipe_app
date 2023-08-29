@@ -14,14 +14,17 @@ import { Messages } from "../../Config/messages";
 import ScrollableList from "../../Components/ScrollableList";
 import { isArray } from "../../Config/checkers";
 import Loader from "../../Components/Loader";
+import usePlayIntersection from "../../hooks/usePlayerInteraction";
 function Home(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const snapShot = state.homeReducer.recipes;
   const userId = state.profileReducer.userDetails.id;
+  const categories = state.categoryReducer.categories;
   const qVideos = document.querySelectorAll("video");
   const isLoading = state.homeReducer.isLoading;
+  const [observe, containerRef] = usePlayIntersection();
   const calcVideoNumber = (scrollPositionY) =>
     Math.floor(scrollPositionY / 400);
   const stopPlaying = (videos) =>
@@ -60,18 +63,27 @@ function Home(props) {
   const isFirstLoading =
     isLoading && isArray(snapShot) && snapShot?.length === 0;
   return (
-    <div className="home_main">
+    <div className="home_main" ref={containerRef}>
       <div className="home_item_wrapper">
+        <ul className="home_horrizontal_list">
+          {categories.map((item) => {
+            return <div className="home_horrizontal_li_item">{item.name} </div>;
+          })}
+        </ul>
         {isFirstLoading ? (
           <Loader />
         ) : (
           <ScrollableList
-            data={[...snapShot, ...snapShot, ...snapShot, ...snapShot]}
-            onScroll={handleScroll}
+            data={snapShot}
             renderItem={({ item, index }) => {
               return (
-                <div key={index} className="home_item_">
+                <div
+                  className="home_item_"
+                  onClick={() => handleItemClick(item)}
+                >
                   <PlayerStack
+                    // ref={observe}
+                    key={item}
                     videoID="video"
                     src={item.video_urls[0]}
                     recipe_name={item.recipe_name}
@@ -83,7 +95,7 @@ function Home(props) {
                     profile_name={item.username}
                     post_time={item.createdOn}
                     recipe_props={item}
-                    onVideoClick={() => handleItemClick(item)}
+                    // onVideoClick={}
                   />
                 </div>
               );

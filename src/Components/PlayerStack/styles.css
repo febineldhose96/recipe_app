@@ -41,6 +41,9 @@
     border: 0.2px solid rgba(255, 255, 255, 0.2);
     margin: 10px;
     border-radius: 10px;
+    display: block;
+    height: 100%;
+    width: 100%;
   }
   .bottom_Container {
     padding-inline: 10px;

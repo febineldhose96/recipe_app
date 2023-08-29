@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { forwardRef, memo, useCallback, useState } from "react";
 import "./styles.css";
 import VideoPlayer from "../VideoPlayer";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -7,26 +7,32 @@ import { TbBadge } from "react-icons/tb";
 import { db } from "../../Firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
 import moment from "moment";
-function PlayerStack({
-  videoID,
-  currentUser = null,
-  src,
-  controls = false,
-  recipe_name = "",
-  profile_name = "",
-  post_time = "",
-  like_count = 44,
-  isLiked = false,
-  autoPlay = false,
-  recipe_id = "",
-  favourites = [],
-  recipe_props = {},
-  onLikeButtonPress = () => {},
-  onVideoClick = () => {},
-  onVideoFocus = () => {},
-  onVideoBlur = () => {},
-  ...props
-}) {
+const PlayerStack = forwardRef(function (
+  {
+    videoID,
+    currentUser = null,
+    src,
+    key,
+    loop,
+    muted,
+    controls = false,
+    recipe_name = "",
+    profile_name = "",
+    post_time = "",
+    like_count = 44,
+    isLiked = false,
+    autoPlay = false,
+    recipe_id = "",
+    favourites = [],
+    recipe_props = {},
+    onLikeButtonPress = () => {},
+    onVideoClick = () => {},
+    onVideoFocus = () => {},
+    onVideoBlur = () => {},
+    ...props
+  },
+  ref
+) {
   const [Liked, setLiked] = useState(isLiked);
   const handleLikeButtonPress = useCallback(() => {
     const dbRef = doc(db, `recipes/${recipe_id}`);
@@ -57,20 +63,19 @@ function PlayerStack({
         <p className="recipe_post_time">{moment.utc(post_time).fromNow()}</p>
       </div>
       <h4 className="recipe_name">{recipe_name}</h4>
-      <div className="player_wrapper">
-        <VideoPlayer
-          autoPlay={autoPlay}
-          videoID={videoID}
-          src={src}
-          controls={controls}
-          loop={true}
-          muted={true}
-          onClick={onVideoClick}
-          onMouseOver={onVideoFocus}
-          onMouseOut={onVideoBlur}
-          // onCanPlay={(e) => e.target.pause()}
-        />
-      </div>
+      <video
+        ref={ref}
+        muted
+        // key={key}
+        loop={loop}
+        style={{
+          height: 650,
+          width: "100%",
+          objectFit: "contain",
+        }}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
       <div className="bottom_Container">
         <div className="container">
           {Liked ? (
@@ -96,6 +101,6 @@ function PlayerStack({
       </div>
     </div>
   );
-}
+});
 
 export default memo(PlayerStack);

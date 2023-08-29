@@ -9,6 +9,6 @@
   min-width: 300px;
 }
 .nav_screens {
-  display: flex;
+  display: block;
   flex: 1;
 }

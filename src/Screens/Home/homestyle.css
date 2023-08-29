@@ -1,0 +1,13 @@
+.container {
+  height: 100%;
+  overflow: auto;
+}
+
+video,
+.filler {
+  display: block;
+  height: 60%;
+  width: 40%;
+  object-fit: cover;
+  border-radius: 25px;
+}

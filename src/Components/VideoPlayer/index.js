@@ -3,6 +3,7 @@ import "./styles.css";
 const VideoPlayer = forwardRef(function (
   {
     src,
+    key,
     videoID,
     muted,
     loop = false,
@@ -21,17 +22,19 @@ const VideoPlayer = forwardRef(function (
   return (
     <video
       id={videoID}
+      key={key}
       loop={loop}
       className={playerStyle}
       ref={ref}
-      src={src}
       muted={muted}
       onClick={onClick}
       autoPlay={autoPlay}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onCanPlay={onCanPlay}
-    />
+    >
+      <source src={src} type="video/mp4" />
+    </video>
   );
 });
 
