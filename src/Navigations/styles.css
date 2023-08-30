@@ -1,14 +1,13 @@
-.nav_ {
-  display: flex;
-  flex-grow: 1;
+.bottom_nav_bar1 {
+  position: fixed;
+  bottom: 0;
 }
-.nav_header {
-  display: flex;
-  height: 100px;
-  flex: 1/3;
-  min-width: 300px;
+.bottom_nav_bar2 {
+  height: 100vh;
+  overflow: scroll;
 }
-.nav_screens {
-  display: flex;
-  flex: 1;
+@media (min-width: 767px) {
+  .bottom_nav_bar1 {
+    position: relative;
+  }
 }

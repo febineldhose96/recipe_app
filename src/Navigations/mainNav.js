@@ -18,36 +18,45 @@ import SavedRecipes from "../Screens/SavedRecipes";
 import Launcher from "../Screens/Launcher";
 import Category from "../Screens/Category";
 import TestPage from "../Screens/Home/test";
+import { Col, Container, Row } from "reactstrap";
 function MainNav({ isLoggedIn = false }) {
   return (
     <NavigationProvider>
-      <div className="nav_">
-        {isLoggedIn ? (
-          <div className="nav_header">
-            <Header />
-          </div>
-        ) : null}
-        <div className="nav_screens">
-          <Routes>
-            <Route
-              path={NAV_SCREENS.home}
-              element={isLoggedIn ? <Home /> : <Launcher />}
-            />
-            <Route path={NAV_SCREENS.login} element={<Login />} />
-            <Route path={NAV_SCREENS.signup} element={<SignUp />} />
-            <Route
-              path={NAV_SCREENS.recipe_details}
-              element={<RecipeDetails />}
-            />
-            <Route path={NAV_SCREENS.profile} element={<Profile />} />
-            <Route path={NAV_SCREENS.savedRecipes} element={<SavedRecipes />} />
-            <Route path={NAV_SCREENS.uploadrecipe} element={<UploadRecipe />} />
-            <Route path={NAV_SCREENS.category} element={<Category />} />
-            <Route path="*" element={<Pof404 />} />
-            <Route path={NAV_SCREENS.test} element={<TestPage />} />
-          </Routes>
-        </div>
-      </div>
+      <Container fluid>
+        <Row className="justify-content-center">
+          {isLoggedIn && (
+            <Col sm={12} md={2} className="p-0 bottom_nav_bar1">
+              <Header />
+            </Col>
+          )}
+          <Col sm={12} md={10} className="p-0 bottom_nav_bar2">
+            <Routes>
+              <Route
+                path={NAV_SCREENS.home}
+                element={isLoggedIn ? <Home /> : <Launcher />}
+              />
+              <Route path={NAV_SCREENS.login} element={<Login />} />
+              <Route path={NAV_SCREENS.signup} element={<SignUp />} />
+              <Route
+                path={NAV_SCREENS.recipe_details}
+                element={<RecipeDetails />}
+              />
+              <Route path={NAV_SCREENS.profile} element={<Profile />} />
+              <Route
+                path={NAV_SCREENS.savedRecipes}
+                element={<SavedRecipes />}
+              />
+              <Route
+                path={NAV_SCREENS.uploadrecipe}
+                element={<UploadRecipe />}
+              />
+              <Route path={NAV_SCREENS.category} element={<Category />} />
+              <Route path="*" element={<Pof404 />} />
+              <Route path={NAV_SCREENS.test} element={<TestPage />} />
+            </Routes>
+          </Col>
+        </Row>
+      </Container>
     </NavigationProvider>
   );
 }

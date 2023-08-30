@@ -1,0 +1,78 @@
+@import url(../../Config/color.css);
+.s_header_main {
+  background-color: var(--nav_header_background);
+  z-index: 99999;
+  position: fixed;
+  padding: 0;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.sh-card-wrapper1 {
+  display: none;
+}
+.sh-user-name {
+  color: white;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.sh-log-out {
+  color: white;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.sh-search-wrapper {
+  margin-bottom: 5px;
+}
+.sh-search-icon {
+  color: white;
+  margin-left: 20px;
+  height: 40px;
+  width: 40px;
+  background-color: #27ae60;
+  border-radius: 30px;
+  padding: 10px;
+  margin-right: 10px;
+}
+.sh-search-input {
+  margin-left: 10px;
+  border-radius: 20px;
+}
+.sh-list {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  max-width: 95%;
+  margin-top: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.sh-list::-webkit-scrollbar {
+  display: none;
+}
+.sh-list-item {
+  color: white;
+  border: 1px solid white;
+  margin-right: 10px;
+  padding-inline: 15px;
+  padding-block: 5px;
+  white-space: nowrap;
+  border-radius: 6px;
+  margin-block: 10px;
+}
+@media (min-width: 767px) {
+  .s_header_main {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding-left: 30px;
+  }
+  .sh-card-wrapper1 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+  .sh-list {
+    width: 60%;
+  }
+}

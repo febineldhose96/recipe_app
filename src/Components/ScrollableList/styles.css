@@ -1,7 +1,5 @@
 .scrll_listStyle {
-  position: absolute;
-  display: block;
+  display: flex;
   flex-direction: column;
-  overflow: scroll;
-  height: 100%;
+  z-index: -1;
 }

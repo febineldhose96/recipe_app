@@ -7,6 +7,7 @@ import { TbBadge } from "react-icons/tb";
 import { db } from "../../Firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
 import moment from "moment";
+import { Col, Container, Row } from "reactstrap";
 function PlayerStack({
   videoID,
   currentUser = null,
@@ -44,55 +45,49 @@ function PlayerStack({
     onLikeButtonPress(!Liked);
   }, [onLikeButtonPress, setLiked, Liked, currentUser, favourites, recipe_id]);
   return (
-    <div className="playerstack">
-      <div className="top_container">
-        <div className="profile_img_wrapper">
-          <img
-            className="prof_img_style"
-            alt="profile_img"
-            src={require("../../assets/images/profile_image.png")}
-          />
-        </div>
-        <h3 className="profile_name">{profile_name}</h3>
-        <p className="recipe_post_time">{moment.utc(post_time).fromNow()}</p>
-      </div>
-      <h4 className="recipe_name">{recipe_name}</h4>
-      <div className="player_wrapper">
-        <VideoPlayer
-          autoPlay={autoPlay}
-          videoID={videoID}
-          src={src}
-          controls={controls}
-          loop={true}
-          muted={true}
-          onClick={onVideoClick}
-          onMouseOver={onVideoFocus}
-          onMouseOut={onVideoBlur}
-          // onCanPlay={(e) => e.target.pause()}
-        />
-      </div>
-      <div className="bottom_Container">
-        <div className="container">
+    <div className="pl-main-style">
+      <VideoPlayer
+        autoPlay={autoPlay}
+        videoID={videoID}
+        src={src}
+        controls={controls}
+        loop={true}
+        muted={true}
+        onClick={onVideoClick}
+        onMouseOver={onVideoFocus}
+        onMouseOut={onVideoBlur}
+      />
+
+      <div className="home-bottom-row">
+        <h3 className="home-recipe-name">{recipe_name}</h3>
+        <div className="hm-recipe-right-end-wrapper">
+          <div className="hm-recipe-fav-wrapper">
+            {Liked ? (
+              <AiFillHeart
+                className="hm-like-icon-active"
+                onClick={handleLikeButtonPress}
+              />
+            ) : (
+              <AiOutlineHeart
+                className="hm-like-icon-inactive"
+                onClick={handleLikeButtonPress}
+              />
+            )}
+            <p className="home-like_count">{like_count}</p>
+          </div>
+
           {Liked ? (
-            <AiFillHeart
-              className="Like_icon"
+            <TbBadge
+              className="hm-badge-icon-active"
               onClick={handleLikeButtonPress}
             />
           ) : (
-            <AiOutlineHeart
-              className="icon_style"
+            <TbBadge
+              className="hm-badge-icon-inactive"
               onClick={handleLikeButtonPress}
             />
           )}
-          <FaRegComment className="icon_style" />
-          <FaShare className="icon_style" />
-          <div className="icon_wrapper_1">
-            <TbBadge className="icon_style_badge" />
-          </div>
         </div>
-        <p className="like_count">
-          {like_count > 1 ? like_count + " Likes" : like_count + " Like"}
-        </p>
       </div>
     </div>
   );

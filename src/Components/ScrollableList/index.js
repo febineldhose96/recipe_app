@@ -1,5 +1,6 @@
-import React, { memo, useMemo, useRef } from "react";
+import React, { memo, useMemo } from "react";
 import "./styles.css";
+import { ListGroup } from "reactstrap";
 function ScrollableList({
   data = [],
   visible = true,
@@ -11,36 +12,21 @@ function ScrollableList({
   listHeader = () => <div></div>,
   listStyle = "scrll_listStyle",
   onScroll = () => {},
-  onDoubleClickItem = () => {},
-  isBottomReached = () => {},
 }) {
   const memozedData = useMemo(() => data, [data]);
-  const liRef = useRef();
   const isEmpty = useMemo(
     () => (Array.isArray(memozedData) ? memozedData.length === 0 : true),
     [memozedData]
   );
-  const handleScroll = (e) => {
-    const bottom =
-      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    if (bottom) {
-      isBottomReached();
-    }
-    onScroll(e);
-  };
   if (visible)
     return (
-      <ul className={listStyle} onScroll={handleScroll}>
+      <ListGroup className={listStyle} onScroll={onScroll}>
         {headerVisible && listHeader()}
         {isEmpty
           ? listEmptyItem()
-          : memozedData.map((item, index) => (
-              <li key={index} ref={liRef} onDoubleClick={onDoubleClickItem}>
-                {renderItem({ item, index })}
-              </li>
-            ))}
+          : memozedData.map((item, index) => renderItem({ item, index }))}
         {footerVisible && listFooter()}
-      </ul>
+      </ListGroup>
     );
   else return null;
 }

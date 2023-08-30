@@ -1,90 +1,59 @@
 @import url(../../Config/color.css);
-.playerstack {
-  .top_container {
-    align-items: center;
-    display: flex;
-    padding-inline: 10px;
-    margin-block: 10px;
-    color: white;
-  }
-  .container {
-    align-items: center;
-    display: flex;
-    padding: 0px;
-  }
-  .profile_name {
-    font-size: medium;
-    color: white;
-    margin: 0px;
-    margin-left: 10px;
-  }
-  .profile_img_wrapper {
-    border: 1px solid white;
-    border-radius: 30px;
-    width: 33px;
-    height: 33px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-  }
-  .prof_img_style {
-    width: 30px;
-    height: 30px;
-  }
-  .recipe_post_time {
-    color: white;
-    margin: 0px;
-    padding: 0px;
-    margin-left: 10px;
-  }
-  .player_wrapper {
-    border: 0.2px solid rgba(255, 255, 255, 0.2);
-    margin: 10px;
-    border-radius: 10px;
-  }
-  .bottom_Container {
-    padding-inline: 10px;
-  }
-  .icon_style {
-    color: white;
-    font-size: 22px;
-    margin-right: 15px;
-    margin-block: 10px;
-    transition: transform 10ms;
-  }
-  .icon_style_badge {
-    color: white;
-    font-size: 25px;
-    margin-right: 15px;
-    margin-block: 10px;
-    transition: transform 10ms;
-    transform: rotate(180deg);
-  }
-  .icon_style_badge {
-    transform: rotate(180deg);
-  }
-  .icon_style:hover,
-  .Like_icon:hover {
-    transform: scale(1.1);
-  }
-  .Like_icon {
-    color: var(--orange_medium);
-    font-size: 22px;
-    margin-right: 15px;
-    margin-block: 10px;
-    transition: transform 10ms;
-  }
-  .icon_wrapper_1 {
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
-  }
-  .like_count {
-    color: white;
-  }
-  .recipe_name {
-    color: white;
-    margin-left: 10px;
-    margin-bottom: 10px;
+.pl-main-style {
+  display: flex;
+  flex-direction: column;
+}
+.home-recipe-name {
+  color: var(--primary_green);
+}
+.home-bottom-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+}
+.hm-like-icon-active {
+  color: var(--primary_green);
+}
+.hm-like-icon-inactive {
+  color: var(--primary_green);
+}
+.hm-recipe-fav-wrapper {
+  border: 1px solid var(--primary_green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  align-self: center;
+  border-radius: 6px;
+  padding-inline: 6px;
+}
+.home-like_count {
+  margin: 0;
+  margin-left: 5px;
+}
+.hm-recipe-right-end-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.hm-badge-icon-active {
+  color: var(--primary_green);
+  align-self: center;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.hm-badge-icon-inactive {
+  color: var(--primary_green);
+  align-self: center;
+  margin-left: 10px;
+  font-size: 20px;
+}
+@media (min-width: 767px) {
+  .pl-main-style {
+    object-fit: cover;
+    width: 500px;
+    columns: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }

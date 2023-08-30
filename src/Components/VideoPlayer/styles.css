@@ -1,11 +1,14 @@
 .videoplayer {
-  width: 450px;
-  height: 300px;
-  object-fit: contain;
+  height: 40vh;
+  object-fit: cover;
+  width: 100%;
+  background-color: rgb(44, 58, 58);
 }
-@media (min-width=767px) {
+@media (min-width: 767px) {
   .videoplayer {
-    width: 30vw;
-    height: 30vh;
+    height: 35vh;
+    object-fit: cover;
+    width: 100%;
+    background-color: rgb(44, 58, 58);
   }
 }

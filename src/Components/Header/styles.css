@@ -1,59 +1,87 @@
 @import url(../../Config/color.css);
 .header_main {
-  position: fixed;
-  height: 100vh;
-  flex-direction: column;
-  display: flex;
-  padding-left: 30px;
-  flex: 1;
-  padding-right: 20px;
-  border-right: 0.5px solid rgba(255, 255, 255, 0.2);
+  background-color: var(--nav_background);
+  z-index: 99999;
+  box-shadow: 1px 1px 4px 0.6px grey;
 }
 .header_logo_ {
-  font-family: cursive;
-  color: white;
-  font-weight: bold;
-  margin-top: 40px;
+  display: none;
+  width: 12vw;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .header_nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   cursor: pointer;
 }
 .nav_item {
-  margin-top: 20px;
   display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  transition: transform 0.2s;
   align-items: center;
   padding-block: 10px;
-  min-width: 200px;
-  transition: transform 0.2s;
 }
 .nav_item:hover {
   background-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.03);
 }
 .header_nav_icon {
-  color: white;
-  margin-right: 10px;
-  font-size: 25px;
-  margin-left: 5px;
+  height: 30px;
+  width: 30px;
 }
 .header_nav_name_active {
-  margin-right: 20px;
-  color: white;
-  text-decoration: none;
-  font-size: large;
-  font-weight: bolder;
+  display: none;
 }
 .header_nav_name_inactive {
-  margin-right: 20px;
-  color: white;
-  text-decoration: none;
-  font-size: large;
+  display: none;
 }
-.header_nav_name_active:hover,
-.header_nav_name_inactive:hover {
-  color: white;
-  transform: none;
+
+@media (min-width: 767px) {
+  .header_main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .header_logo_ {
+    display: flex;
+  }
+  .header_nav {
+    flex-direction: column;
+  }
+  .header_nav_icon {
+    margin-right: 20px;
+  }
+  .nav_item {
+    margin-top: 20px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-start;
+    padding-block: 10px;
+    width: 200px;
+    align-self: center;
+    transition: transform 0.2s;
+  }
+  .header_nav_name_active {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: large;
+    font-weight: bolder;
+    display: flex;
+  }
+  .header_nav_name_inactive {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: large;
+    display: flex;
+  }
+  .header_nav_name_active:hover,
+  .header_nav_name_inactive:hover {
+    color: white;
+    transform: none;
+  }
 }

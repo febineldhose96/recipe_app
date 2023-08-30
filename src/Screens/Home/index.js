@@ -14,6 +14,8 @@ import { Messages } from "../../Config/messages";
 import ScrollableList from "../../Components/ScrollableList";
 import { isArray } from "../../Config/checkers";
 import Loader from "../../Components/Loader";
+import ScreenHeader from "../../Components/ScreenHeader";
+import { Col, Container, Row, TabContent, Table } from "reactstrap";
 function Home(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -59,39 +61,41 @@ function Home(props) {
   };
   const isFirstLoading =
     isLoading && isArray(snapShot) && snapShot?.length === 0;
+  const VerticalList = () => {
+    return (
+      <Container className="home-list" fluid>
+        <Row>
+          {snapShot.map((item, index) => {
+            return (
+              <Col md="6" className="home-list-item">
+                <PlayerStack
+                  videoID="video"
+                  src={item.video_urls[0]}
+                  recipe_name={item.recipe_name}
+                  recipe_id={item.id}
+                  like_count={item?.favourites.length}
+                  favourites={item.favourites}
+                  currentUser={userId}
+                  isLiked={item?.favourites?.includes(userId) ?? false}
+                  profile_name={item.username}
+                  post_time={item.createdOn}
+                  recipe_props={item}
+                  onVideoClick={() => handleItemClick(item)}
+                  onVideoFocus={(e) => e.target.play()}
+                  onVideoBlur={(e) => e.target.pause()}
+                />
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
+    );
+  };
   return (
-    <div className="home_main">
-      <div className="home_item_wrapper">
-        {isFirstLoading ? (
-          <Loader />
-        ) : (
-          <ScrollableList
-            data={[...snapShot, ...snapShot, ...snapShot, ...snapShot]}
-            onScroll={handleScroll}
-            renderItem={({ item, index }) => {
-              return (
-                <div key={index} className="home_item_">
-                  <PlayerStack
-                    videoID="video"
-                    src={item.video_urls[0]}
-                    recipe_name={item.recipe_name}
-                    recipe_id={item.id}
-                    like_count={item?.favourites.length}
-                    favourites={item.favourites}
-                    currentUser={userId}
-                    isLiked={item?.favourites?.includes(userId) ?? false}
-                    profile_name={item.username}
-                    post_time={item.createdOn}
-                    recipe_props={item}
-                    onVideoClick={() => handleItemClick(item)}
-                  />
-                </div>
-              );
-            }}
-          />
-        )}
-      </div>
-    </div>
+    <Container className="p-0" fluid>
+      <ScreenHeader type="home" />
+      {isFirstLoading ? <Loader /> : <VerticalList />}
+    </Container>
   );
 }
 export default memo(Home);
