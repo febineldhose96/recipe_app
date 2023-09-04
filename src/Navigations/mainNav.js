@@ -29,7 +29,11 @@ function MainNav({ isLoggedIn = false }) {
               <Header />
             </Col>
           )}
-          <Col sm={12} md={10} className="p-0 bottom_nav_bar2">
+          <Col
+            sm={12}
+            md={isLoggedIn ? 10 : 12}
+            className="p-0 bottom_nav_bar2"
+          >
             <Routes>
               <Route
                 path={NAV_SCREENS.home}

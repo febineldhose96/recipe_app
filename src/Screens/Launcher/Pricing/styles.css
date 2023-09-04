@@ -1,0 +1,39 @@
+.pricing-main-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  margin-top: 50px;
+  padding-inline: 100px;
+}
+.pricing-main-text {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.pricing-main-text-green {
+  font-size: 35px;
+  color: green;
+  font-weight: bold;
+}
+.pricing-list-row-style {
+  gap: 15px;
+}
+.pricing-item-style {
+  box-shadow: 1px 1px 6px 1px rgb(171, 171, 171);
+  border-radius: 20px;
+  row-gap: 10px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 10px;
+}
+.pricing-buynow-button {
+  border: 1px solid green;
+  border-radius: 20px;
+  color: green;
+  background-color: white;
+  align-self: center;
+}

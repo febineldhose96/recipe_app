@@ -1,49 +1,121 @@
-.login_up {
+@import url(../../Config/color.css);
+.launcher-container {
+  padding-bottom: 20px;
+  height: 100%;
+  width: 100%;
+}
+.launcher-home-heading {
+  font-weight: bold;
+  text-align: justify;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 100px;
+}
+.launcher-home-text-bold-1 {
+  max-width: 80%;
+  text-align: justify;
   font-size: 16px;
-  justify-content: center;
+}
+.launcher-home-heading-green {
+  font-weight: bold;
+  color: var(--primary_green);
+  margin-left: 10px;
+  font-size: 35px;
+}
+.launcher-home-imagesetup {
+  /* position: absolute; */
+  height: 100%;
+  z-index: -1;
+  margin-top: -65%;
+}
+.launcher-home-image1 {
+  margin-top: 10px;
+}
+.launcher-home-image2 {
+  width: 10%;
+  transition: transform 0.4s;
+}
+.launcher-home-image3 {
+  width: 20%;
+  transition: transform 0.4s;
+}
+.launcher-home-image4 {
+  width: 30%;
+  transition: transform 0.4s;
+  margin-left: 30px;
+}
+.launcher-home-image5 {
+  width: 25%;
+  transition: transform 0.4s;
+  margin-left: 60px;
+}
+.launcher-home-image6 {
+  width: 30%;
+  transition: transform 0.4s;
+  margin-left: 70px;
+}
+.launcher-home-image7 {
+  width: 15%;
+  transition: transform 0.4s;
+  margin-left: 100px;
+}
+.launcher-home-image2:hover,
+.launcher-home-image3:hover,
+.launcher-home-image4:hover,
+.launcher-home-image5:hover,
+.launcher-home-image6:hover,
+.launcher-home-image7:hover {
+  transform: scale(1.2);
+}
+.drawer-text1 {
+  margin-top: 60px;
+}
+.launcher-home-about-us {
+  font-weight: bold;
+  text-align: justify;
+  margin-top: 100px;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  display: flex;
-  background-image: url("../../assets/images/login_bcknd.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  left: 0px;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
-.login_wrapper {
-  background-color: white;
-  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.3);
-  padding-block: 50px;
-  border-radius: 10px;
-  padding-inline: 30px;
+.launcher-home-about-us-long-txt {
+  text-align: justify;
+  font-size: 16px;
 }
-.text1 {
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.form-sheet {
-  display: flex;
-  flex-direction: column;
-}
-.inputs {
-  margin-bottom: 15px;
-  border-radius: 5px;
-  padding-left: 8px;
-}
-.check-box,
-.check-box:focus,
-.check-box:hover {
-  outline: none;
-  margin-right: 5px;
-}
-.submit_butn {
-  border: none;
-  border-radius: 10px;
-  margin-top: 20px;
-  width: 150px;
-  align-self: center;
+@media (min-width: 767px) {
+  .launcher-home-main {
+    padding-top: 40px;
+  }
+  .launcher-home-about-us-long-txt {
+    width: 80%;
+  }
+  .launcher-home-heading {
+    font-weight: bold;
+    margin-left: 100px;
+    text-align: justify;
+    margin-top: 100px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  .launcher-home-text-bold-1 {
+    max-width: 80%;
+    margin-left: 100px;
+    text-align: justify;
+    font-size: 16px;
+  }
 }

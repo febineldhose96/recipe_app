@@ -5,7 +5,8 @@ import { CardGroup, Col, Container, Input, InputGroup, List } from "reactstrap";
 import { FaSearch } from "react-icons/fa";
 import IMAGE_ASSETS from "../../assets/images";
 import { useSelector } from "react-redux";
-function ScreenHeader({ type = "home" }) {
+import LandinHeader from "./LandinHeader";
+function ScreenHeader({ type = "home", ...props }) {
   const state = useSelector((state) => state);
   const categories = state.categoryReducer.categories.filter(
     (e) => e.is_popular
@@ -47,6 +48,7 @@ function ScreenHeader({ type = "home" }) {
         </List>
       </Container>
     );
+  else if (type === "launcher") return <LandinHeader {...props} />;
   else return null;
 }
 
