@@ -23,6 +23,7 @@ import { getSingleDocument } from "../../Firebase/functions";
 import { setRecipeDetails } from "../RecipeDetails/reducer";
 import { NAV_SCREENS } from "../../Navigations/config";
 import { useNavigate } from "react-router-dom";
+import { Container, List, Col, Row, InputGroup, Input } from "reactstrap";
 
 function SavedRecipes() {
   const state = useSelector((state) => state);
@@ -93,46 +94,64 @@ function SavedRecipes() {
     navigate(`${NAV_SCREENS.recipe_details}${recipe.id}`);
   };
   return (
-    <div className="sr_main">
-      <h3 className="sr_saved_textname">Saved</h3>
-      <div>
-        <FaSearch className="sr_search_Icon" />
-        <input
-          type="search"
-          className="sr_search_input"
-          placeholder="Search recipes"
-          onChange={handleSearch}
-        />
-      </div>
-      <h3 className="sr_recipes_textname">Recipes</h3>
-      <div className="sr_player_stack">
-        {isEmpty ? (
-          <div className="sr_empty_view">You have no saved recipes</div>
-        ) : (
-          snapShot.map((item, index) => {
-            return (
-              <div className="sr_player_main" key={index}>
-                <VideoPlayer
-                  src={item.video_urls[0]}
-                  loop
-                  autoPlay={false}
-                  mainclassStyle="sr_player_video"
-                  playerStyle="sr_player_video_style"
-                  onMouseOver={(e) => e.target.play()}
-                  onMouseOut={(e) => e.target.pause()}
-                  onCanPlay={(e) => e.target.pause()}
-                  onClick={() => handleItemClick(item)}
-                />
-                <h4 className="sr_recipe_name">{item.recipe_name}</h4>
-                <MdDelete
-                  className="sr_delete_icon"
-                  onClick={() => handleRemove(item.id)}
-                />
-              </div>
-            );
-          })
-        )}
-      </div>
+    <div style={{ paddingLeft: 20 }}>
+      <h3 style={{ marginTop: 20, color: "green", fontWeight: "bold" }}>
+        Your Saved Recipes
+      </h3>
+      <Col sm={6} className="sh-search-wrapper" style={{ marginTop: 20 }}>
+        <InputGroup>
+          <Input
+            placeholder="Search saved recipes..."
+            className="sh-search-input"
+            onChange={handleSearch}
+          />
+          <FaSearch className="sh-search-icon" />
+        </InputGroup>
+      </Col>
+      <Col>
+        <div className="sr_player_stack" style={{ gap: 15 }}>
+          {isEmpty ? (
+            <div style={{ color: "green", marginTop: 200, marginLeft: 200 }}>
+              You have no saved recipes
+            </div>
+          ) : (
+            snapShot.map((item, index) => {
+              return (
+                <div key={index}>
+                  <video
+                    src={item.video_urls[0]}
+                    loop
+                    autoPlay={false}
+                    mainclassStyle="sr_player_video"
+                    playerStyle="sr_player_video_style"
+                    onMouseOver={(e) => e.target.play()}
+                    onMouseOut={(e) => e.target.pause()}
+                    onCanPlay={(e) => e.target.pause()}
+                    onClick={() => handleItemClick(item)}
+                    style={{
+                      height: 200,
+                      width: 200,
+                      objectFit: "cover",
+                      borderRadius: 10,
+                    }}
+                  />
+                  <Row style={{ marginTop: 10 }}>
+                    <Col sm={10}>
+                      <h4 style={{ color: "green" }}>{item.recipe_name}</h4>
+                    </Col>
+                    <Col sm={2}>
+                      <MdDelete
+                        style={{ fontSize: 20 }}
+                        onClick={() => handleRemove(item.id)}
+                      />
+                    </Col>
+                  </Row>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </Col>
     </div>
   );
 }

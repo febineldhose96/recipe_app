@@ -1,0 +1,59 @@
+@import url(../../Config/color.css);
+.pl-main-style {
+  display: flex;
+  flex-direction: column;
+}
+.home-recipe-name {
+  color: var(--primary_green);
+}
+.home-bottom-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+}
+.hm-like-icon-active {
+  color: var(--primary_green);
+}
+.hm-like-icon-inactive {
+  color: var(--primary_green);
+}
+.hm-recipe-fav-wrapper {
+  border: 1px solid var(--primary_green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  align-self: center;
+  border-radius: 6px;
+  padding-inline: 6px;
+}
+.home-like_count {
+  margin: 0;
+  margin-left: 5px;
+}
+.hm-recipe-right-end-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.hm-badge-icon-active {
+  color: var(--primary_green);
+  align-self: center;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.hm-badge-icon-inactive {
+  color: var(--primary_green);
+  align-self: center;
+  margin-left: 10px;
+  font-size: 20px;
+}
+@media (min-width: 767px) {
+  .pl-main-style {
+    object-fit: cover;
+    width: 500px;
+    columns: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

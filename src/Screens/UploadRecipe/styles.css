@@ -86,7 +86,7 @@
 }
 .up_drop_butn_styles,
 .up_drop_butn_styles:hover {
-  border: 1px solid white;
+  border: 2px solid green;
   color: white;
   margin-top: 20px;
   margin-bottom: 10px;

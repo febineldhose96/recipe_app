@@ -1,13 +1,17 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import "./styles.css";
 import FileContainer from "./FileContainer";
 import InputStack from "./InputStack";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../../Firebase/config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import Loader from "../../Components/Loader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DropDown from "../../Components/DropDown";
+import ScreenHeader from "../../Components/ScreenHeader";
+import { toastController } from "../../Components/ToastWidget";
+import { ChangeUserDetails } from "../Profile/reducer";
+import { Messages } from "../../Config/messages";
 export default function UploadRecipe(params) {
   const state = useSelector((state) => state);
   const userId = state.profileReducer.userDetails.id;
@@ -19,7 +23,9 @@ export default function UploadRecipe(params) {
     name: e.name,
   }));
   const cuisines = state.categoryReducer.cuisines;
+  const dispatch = useDispatch();
   const [isLoading, setloading] = useState(false);
+  const fileRef = useRef();
   const [images, setImages] = useState([]);
   const [video, setVideo] = useState([]);
   const [data, setData] = useState({
@@ -93,12 +99,38 @@ export default function UploadRecipe(params) {
       setloading(false);
     }
   };
-  console.log(data);
+  const onEditProfile = async (type, event) => {
+    const imageRef = ref(storage, `recipe-thumbnails/${Date.now()}`);
+    const docRef = doc(db, `users/${userId}`);
+    if (type === "picked") {
+      const _file = event?.target?.files[0];
+      if (event?.target?.files[0]) {
+        var url = URL.createObjectURL(_file);
+        uploadBytes(imageRef, _file).then(async (_) => {
+          const url = await getDownloadURL(imageRef).then((url) => url);
+          updateDoc(docRef, { profile_imageUrl: url }).then((e) => {
+            toastController.success(Messages.success_Messages.prof_img);
+            dispatch(ChangeUserDetails());
+          });
+        });
+      }
+    } else {
+      fileRef.current.click();
+    }
+  };
   if (isLoading) return <Loader />;
   else
     return (
-      <div className="upload_recipe">
-        <div className="main-container">
+      <div>
+        <ScreenHeader type="profile" onEditProfile={onEditProfile} />
+        <input
+          type="file"
+          accept={"image/*"}
+          ref={fileRef}
+          style={{ display: "none" }}
+          onChange={(e) => onEditProfile("picked", e)}
+        />
+        <div style={{ paddingTop: 170, backgroundColor: "black" }}>
           <div className="container-wrapper">
             <form onSubmit={handleSubmit}>
               <h4 className="plain-text1">Title</h4>

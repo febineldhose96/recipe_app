@@ -1,1 +1,14 @@
 @import url(../../Config/fonts.css);
+.category-list {
+  border: 1px solid green;
+  /* display: flex;
+  flex-direction: row;
+  flex: 1; */
+}
+.sh-list-item {
+  border: 1px solid green;
+  color: green;
+}
+.category-top-list {
+  margin-top: 10px;
+}

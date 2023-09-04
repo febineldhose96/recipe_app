@@ -10,6 +10,7 @@ const Messages = {
     login: "Login succesfully",
     logout: "Logout Successfully",
     signup: "Sign up successfully",
+    prof_img: "Profile Updated Successfully",
   },
 };
 export { Messages };
