@@ -17,13 +17,13 @@ export default function Launcher(params) {
   const contactRef = document.getElementById("contact");
   const handleNavItemClick = (item) => {
     if (item === "home") {
-      homeRef.scrollIntoView({ behavior: "smooth", block: "start" });
+      homeRef?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (item === "about") {
-      aboutRef.scrollIntoView({ behavior: "smooth", block: "start" });
+      aboutRef?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (item === "pricing") {
-      priceRef.scrollIntoView({ behavior: "smooth", block: "start" });
+      priceRef?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (item === "contact") {
-      contactRef.scrollIntoView({ behavior: "smooth", block: "start" });
+      contactRef?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
   return (

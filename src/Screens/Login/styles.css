@@ -1,49 +1,57 @@
-.login_up {
+.login_main {
+  background-image: url("../../assets/images/background_img_login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+.login_main_sub {
   font-size: 16px;
   justify-content: center;
   align-items: center;
   display: flex;
-  background-image: url("../../assets/images/login_bcknd.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  left: 0px;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-.login_wrapper {
-  background-color: white;
-  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.3);
-  padding-block: 50px;
-  border-radius: 10px;
-  padding-inline: 30px;
-}
-.text1 {
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.form-sheet {
-  display: flex;
+  height: 100%;
   flex-direction: column;
 }
-.inputs {
+.login-star-symbol {
+  font-size: 30px;
+  color: red;
+}
+.login-inputs {
   margin-bottom: 15px;
-  border-radius: 5px;
-  padding-left: 8px;
-}
-.check-box,
-.check-box:focus,
-.check-box:hover {
-  outline: none;
-  margin-right: 5px;
-}
-.submit_butn {
-  border: none;
   border-radius: 10px;
-  margin-top: 20px;
-  width: 150px;
-  align-self: center;
+  padding-left: 8px;
+  border: 1px solid green;
+  width: 30vw;
+  height: 40px;
+}
+.login-inputs:hover,
+.login-inputs:focus {
+  border: 1px solid green;
+}
+.login-heading-text {
+  color: green;
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+}
+.login-input-wrapper {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-button-1 {
+  background-color: green;
+  padding: 6px;
+  padding-inline: 20px;
+  font-weight: bold;
+  border-radius: 15px;
+  border: 2px solid white;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.login-button-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

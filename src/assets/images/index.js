@@ -23,5 +23,6 @@ const IMAGE_ASSETS = {
   landinpage_phone: require("./phone.png"),
   landinpage_email: require("./email.png"),
   landinpage_location: require("./landin_page_location.png"),
+  login_background: require("./background_img_login.png"),
 };
 export default IMAGE_ASSETS;
