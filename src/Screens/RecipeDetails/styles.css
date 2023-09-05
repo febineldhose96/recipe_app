@@ -6,6 +6,7 @@
   align-self: center;
   padding-top: 30px;
   flex-direction: column;
+  background-color: black;
 }
 .dt_container-1 {
   display: flex;

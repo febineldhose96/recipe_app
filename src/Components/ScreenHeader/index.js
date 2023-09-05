@@ -51,7 +51,7 @@ function ScreenHeader({ type = "home", ...props }) {
               style={{ height: 30, width: 30, borderRadius: 20 }}
               alt="user-img"
             />
-            <label className="sh-user-name">User name</label>
+            <label className="sh-user-name">{user.username}</label>
             <label className="sh-log-out">Logout</label>
             <img
               src={IMAGE_ASSETS.logout_icon}

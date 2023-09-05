@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { TbBadge } from "react-icons/tb";
 export default function Widget4({ onSaveButnClick = () => {} }) {
   const state = useSelector((state) => state);
-  const snapShot = state.homeReducer.recipes;
+  const snapShot = state.homeReducer.recipes.slice(0, 6);
 
   const handleSaveClick = (id) => {
     onSaveButnClick(id);
