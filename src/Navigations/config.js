@@ -9,5 +9,6 @@ const NAV_SCREENS = {
   savedRecipes: "/savedrecipes",
   category: "/categories",
   test: "/test",
+  privacypolicy: "/privacypolicy",
 };
 export { NAV_SCREENS };

@@ -1,0 +1,31 @@
+.p-t-header-height {
+  padding-top: 180px;
+}
+.row-container-with-gap {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.br-green-button {
+  border: 1px solid green;
+  padding: 10px;
+  border-radius: 12px;
+}
+.br-green-active-button {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: green;
+  color: white;
+  border: 1px solid green;
+}
+.go-button {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  border: 1px solid rgb(154, 36, 12);
+  margin-top: 30px;
+  padding: 10px;
+  padding-inline: 30px;
+}

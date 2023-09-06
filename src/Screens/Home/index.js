@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { collection, doc, onSnapshot, query } from "firebase/firestore";
 import { db } from "../../Firebase/config";
 import "./styles.css";
@@ -11,23 +11,39 @@ import { setRecipeDetails } from "../RecipeDetails/reducer";
 import { alterReducer, getRecipes } from "./reducer";
 import { toastController } from "../../Components/ToastWidget";
 import { Messages } from "../../Config/messages";
-import ScrollableList from "../../Components/ScrollableList";
 import { isArray } from "../../Config/checkers";
 import Loader from "../../Components/Loader";
 import ScreenHeader from "../../Components/ScreenHeader";
-import { Col, Container, Row, TabContent, Table } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
+import Preferences from "./Prefernces";
 function Home(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [selectedCategory, setCategory] = useState({ id: 0 });
+  const [searchText, setSearchText] = useState(null);
   const state = useSelector((state) => state);
-  const snapShot = state.homeReducer.recipes;
+  const handlefilter = (data = []) => {
+    return searchText
+      ? data.filter((e) =>
+          e.recipe_name.toLowerCase().includes(searchText.toLowerCase())
+        )
+      : data;
+  };
+  const handleSearch = (event) => {
+    setSearchText(event.target.value);
+  };
+  const snapShot = handlefilter(
+    selectedCategory.id == 0
+      ? state.homeReducer.recipes
+      : state.homeReducer.recipes.filter(
+          (item) => item.category.id === selectedCategory.id
+        )
+  );
   const userId = state.profileReducer.userDetails.id;
-  const qVideos = document.querySelectorAll("video");
+  const showUserPreferences = Boolean(
+    state.profileReducer.userDetails.userPreferences
+  );
   const isLoading = state.homeReducer.isLoading;
-  const calcVideoNumber = (scrollPositionY) =>
-    Math.floor(scrollPositionY / 400);
-  const stopPlaying = (videos) =>
-    Array.from(videos).forEach((video) => video.pause());
   useEffect(() => {
     dispatch(alterReducer({ isLoading: true }));
     const _q = query(collection(db, "recipes"));
@@ -55,10 +71,6 @@ function Home(props) {
     dispatch(setRecipeDetails(recipe_item));
     navigate(`${NAV_SCREENS.recipe_details}${recipe.id}`);
   };
-  const handleScroll = (event) => {
-    stopPlaying(qVideos);
-    qVideos[calcVideoNumber(event.currentTarget.scrollTop)]?.play();
-  };
   const isFirstLoading =
     isLoading && isArray(snapShot) && snapShot?.length === 0;
   const VerticalList = () => {
@@ -67,7 +79,7 @@ function Home(props) {
         <Row>
           {snapShot.map((item, index) => {
             return (
-              <Col md="6" className="home-list-item">
+              <Col md={6} className="home-list-item" key={index}>
                 <PlayerStack
                   videoID="video"
                   src={item.video_urls[0]}
@@ -93,8 +105,18 @@ function Home(props) {
   };
   return (
     <Container className="p-0" fluid>
-      <ScreenHeader type="home" />
-      {isFirstLoading ? <Loader /> : <VerticalList />}
+      <ScreenHeader
+        type="home"
+        onCategoryChanges={(item) => setCategory(item)}
+        onSearch={handleSearch}
+      />
+      {!showUserPreferences ? (
+        <Preferences />
+      ) : isFirstLoading ? (
+        <Loader />
+      ) : (
+        <VerticalList />
+      )}
     </Container>
   );
 }

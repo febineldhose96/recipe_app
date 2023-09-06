@@ -180,7 +180,7 @@ export default function SignUp(params) {
           <Col className="login-button-wrapper">
             <label className="container">
               <input type="checkbox" className="check-box" /> Please accept our
-              <Link> privacy policy</Link>
+              <Link to={NAV_SCREENS.privacypolicy}> privacy policy</Link>
             </label>
             <Row>
               <Button color="primary" className="login-button-1">

@@ -1,6 +1,7 @@
 .dt_w4_main {
   margin-top: 40px;
   margin-right: 40px;
+  padding-left: 20px;
 }
 .dt_w4_head_txt {
   color: white;
@@ -26,6 +27,7 @@
 .dt_w4_video_container {
   height: 200px;
   width: 170px;
+  object-fit: cover;
 }
 .dt_w4_recipename {
   color: white;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardGroup,
   CloseButton,
@@ -22,9 +22,8 @@ import { useSelector } from "react-redux";
 import DropDown from "../../../Components/DropDown";
 export default function CategoryHeader({
   show = true,
-  isDrawerOpen = false,
-  onNavItemClick = () => {},
-  onHambugerClick = () => {},
+  onSearch = () => {},
+  onCategoryChanges = () => {},
 }) {
   const navigate = useNavigate();
   const state = useSelector((state) => state);
@@ -32,6 +31,15 @@ export default function CategoryHeader({
     (e) => e.is_popular
   );
   const categories = state.categoryReducer.mealType;
+  const [filters, setFilters] = useState({
+    mealType: {},
+    dietType: {},
+    cusineType: {},
+  });
+  const handleInputs = (type, event) => {
+    setFilters((e) => ({ ...e, [type]: event }));
+    onCategoryChanges(event);
+  };
   if (show)
     return (
       <Container className="caegory_header_main" fluid>
@@ -58,6 +66,7 @@ export default function CategoryHeader({
             <Input
               placeholder="Search recipes..."
               className="sh-search-input"
+              onChange={onSearch}
             />
             <FaSearch className="sh-search-icon" />
           </InputGroup>
@@ -65,35 +74,35 @@ export default function CategoryHeader({
         <Row>
           <Col sm={2}>
             <DropDown
-              placeholder={"Select mealtype"}
-              parallelText="Mealtype"
+              placeholder={"Select DietType"}
+              parallelText="DietType"
               data={categories}
               dropButtonStyles="up_drop_butn_styles"
               id={`dropdown-variants-secondary`}
-              // selectedItem={data.mealType}
-              // onItemClick={(e) => handleInputs("mealType", e)}
+              selectedItem={filters.dietType}
+              onItemClick={(e) => handleInputs("dietType", e)}
             />
           </Col>
           <Col sm={2}>
             <DropDown
-              placeholder={"Select mealtype"}
+              placeholder={"Select MealType"}
               parallelText="Mealtype"
               data={categories}
               dropButtonStyles="up_drop_butn_styles"
               id={`dropdown-variants-secondary`}
-              // selectedItem={data.mealType}
-              // onItemClick={(e) => handleInputs("mealType", e)}
+              selectedItem={filters.mealType}
+              onItemClick={(e) => handleInputs("mealType", e)}
             />
           </Col>
           <Col sm={2}>
             <DropDown
-              placeholder={"Select mealtype"}
-              parallelText="Mealtype"
+              placeholder={"Select cusineType"}
+              parallelText="CusineType"
               data={categories}
               dropButtonStyles="up_drop_butn_styles"
               id={`dropdown-variants-secondary`}
-              // selectedItem={data.mealType}
-              // onItemClick={(e) => handleInputs("mealType", e)}
+              selectedItem={filters.cusineType}
+              onItemClick={(e) => handleInputs("cusineType", e)}
             />
           </Col>
           <Col
@@ -104,7 +113,17 @@ export default function CategoryHeader({
               justifyContent: "center",
             }}
           >
-            <Button style={{ background: "green", fontWeight: "bold" }}>
+            <Button
+              style={{ background: "green", fontWeight: "bold" }}
+              onClick={() => {
+                onCategoryChanges({ id: 0 });
+                setFilters((e) => ({
+                  dietType: {},
+                  mealType: {},
+                  cusineType: {},
+                }));
+              }}
+            >
               Reset Filter
             </Button>
           </Col>

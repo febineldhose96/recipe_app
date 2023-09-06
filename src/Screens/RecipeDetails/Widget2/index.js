@@ -49,7 +49,7 @@ export default function Widget2({
             <div key={index} className="dt_w2_ingredints_wrapper">
               <MdFoodBank className="dt_w2_icon1" />
               <span className="dt_w2_ingrednt_name_txt">
-                {serving * ingredient?.amount ?? 0}
+                {ingredient?.amount ? serving * ingredient?.amount : ""}
               </span>
               {i_name}
             </div>

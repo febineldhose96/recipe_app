@@ -11,6 +11,7 @@ const Messages = {
     logout: "Logout Successfully",
     signup: "Sign up successfully",
     prof_img: "Profile Updated Successfully",
+    selection_text: "Thank you for your recipe preferences selection",
   },
 };
 export { Messages };

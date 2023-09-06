@@ -49,6 +49,7 @@
   margin-top: 10px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  cursor: grab;
 }
 .sh-list::-webkit-scrollbar {
   display: none;

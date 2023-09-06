@@ -31,7 +31,11 @@ export default function Widget1({
     <div className="dt_w_main">
       <div className="dt_wrapper_1">
         <p className="dt_creatorname">
-          <img src={profile_Url} className="dt_profile_img" alt="profile_img" />{" "}
+          <video
+            src={profile_Url}
+            className="dt_profile_img"
+            alt="profile_img"
+          />{" "}
           {creatorname}
         </p>
         <div>

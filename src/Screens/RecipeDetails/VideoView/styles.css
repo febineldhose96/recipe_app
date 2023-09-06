@@ -1,0 +1,35 @@
+.recipe-details-container {
+  width: 40vw;
+}
+.row-component {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.h4-white-color {
+  color: white;
+  font-size: 20;
+}
+.text-green-Color {
+  color: green;
+  font-size: 25;
+}
+.recipe-details-video {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+.row-s-p-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.m-b-10-Container {
+  margin-bottom: 10px;
+}
+.m-t-10-Container {
+  margin-top: 10px;
+}

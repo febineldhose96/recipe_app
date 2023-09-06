@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, List, Col, Row } from "reactstrap";
@@ -12,13 +12,31 @@ import { doc } from "firebase/firestore";
 import CategoryPlayer from "../../Components/CategoryPlayer";
 export default function Category(params) {
   const state = useSelector((state) => state);
+  const [searchText, setSearchText] = useState(null);
+  const [selectedCategory, setCategory] = useState({ id: 0 });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const popular_categories = state.categoryReducer.categories.filter(
     (e) => e.is_popular
   );
+  const handlefilter = (data = []) => {
+    return searchText
+      ? data.filter((e) =>
+          e.recipe_name.toLowerCase().includes(searchText.toLowerCase())
+        )
+      : data;
+  };
+  const snapShot = handlefilter(
+    selectedCategory.id == 0
+      ? state.homeReducer.recipes
+      : state.homeReducer.recipes.filter(
+          (item) => item.category.id === selectedCategory.id
+        )
+  );
   const categories = state.categoryReducer.mealType;
-  const snapShot = state.homeReducer.recipes;
+  const handleSearch = (event) => {
+    setSearchText(event.target.value);
+  };
   const userId = state.profileReducer.userDetails.id;
   const handleItemClick = async (recipe) => {
     // handle single recipe item click
@@ -29,14 +47,11 @@ export default function Category(params) {
   };
   return (
     <Container fluid className="p-0 ">
-      <ScreenHeader type="category" />
-      {/* <List className="sh-list category-top-list">
-        {[...popular_categories].map((item) => (
-          <div style={{ border: "1px solid green", color: "black" }}>
-            {item.name}
-          </div>
-        ))}
-      </List> */}
+      <ScreenHeader
+        type="category"
+        onCategoryChanges={(item) => setCategory(item)}
+        onSearch={handleSearch}
+      />
       <Row style={{ paddingTop: 200 }}>
         {snapShot.map((item, index) => {
           return (

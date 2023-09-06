@@ -11,6 +11,7 @@ import { db } from "../../Firebase/config";
 import { toastController } from "../../Components/ToastWidget";
 import { Messages } from "../../Config/messages";
 import { ChangeUserDetails } from "../Profile/reducer";
+import VideoView from "./VideoView";
 export default function RecipeDetails(props) {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -56,14 +57,17 @@ export default function RecipeDetails(props) {
   };
   return (
     <div className="dt_main">
+      {/* <VideoView /> */}
       <div className="dt_container-1">
-        <ImageContainer imageUrls={recipe.image_urls} />
+        <ImageContainer video_urls={recipe.video_urls} />
         <Widget1
           creatorname={recipe.username}
           recipeID={recipe.id}
           profile_Url={profile_imageUrl}
           recipename={recipe.recipe_name}
           recipe_description={recipe.recipe_description}
+          recipe_cookTime={recipe.recipe_cooktime_mnts}
+          recipe_prepTime={recipe.recipe_pretime_mnts}
           onPostBtnClick={handleComment}
           onSaveClick={handleSaveButn}
         />

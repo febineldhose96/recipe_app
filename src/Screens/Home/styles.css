@@ -12,7 +12,7 @@
     flex-direction: row;
     overflow: auto;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     margin-left: 10px;
     padding-bottom: 20px;
   }

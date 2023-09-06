@@ -1,0 +1,70 @@
+/* Style the privacy policy container */
+.privacy-policy-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #c3c2c2;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Style the banner container */
+.privacy-policy-banner {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Style the banner image */
+.privacy-policy-banner img {
+  width: 100%;
+  height: auto;
+  max-height: 300px; /* Adjust the height as needed */
+}
+
+/* Style the heading in the banner */
+.privacy-policy-banner h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); Add a semi-transparent background for better readability */
+  padding: 10px 20px;
+  font-size: 70px;
+  border-radius: 5px;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+  font-weight: bolder;
+}
+
+/* Style the policy title (e.g., Privacy Policy) in bold */
+.policy-title {
+  font-weight: bold;
+  margin-top: 20px;
+}
+.subtitle {
+  text-align: center;
+}
+/* Style paragraphs and text */
+p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+h4 {
+  font-weight: 800;
+  margin-top: 50px;
+}
+h1,
+h3 {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bolder;
+}

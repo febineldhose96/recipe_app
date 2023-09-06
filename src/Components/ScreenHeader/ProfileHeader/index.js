@@ -80,9 +80,7 @@ export default function ProfileHeader({
                   marginLeft: 12,
                   marginBottom: 10,
                 }}
-              >
-                Edit
-              </FaEdit>
+              ></FaEdit>
             </Col>
           </Row>
         </Row>

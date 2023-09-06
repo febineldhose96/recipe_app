@@ -14,7 +14,12 @@ import { NAV_SCREENS } from "../../Navigations/config";
 import { toastController } from "../ToastWidget";
 import { Messages } from "../../Config/messages";
 import { onLogout } from "../../Screens/Profile/reducer";
-function ScreenHeader({ type = "home", ...props }) {
+function ScreenHeader({
+  type = "home",
+  onCategoryChanges = () => {},
+  onSearch = () => {},
+  ...props
+}) {
   const state = useSelector((state) => state);
   const user = state.profileReducer.userDetails;
   const categories = state.categoryReducer.categories.filter(
@@ -52,12 +57,15 @@ function ScreenHeader({ type = "home", ...props }) {
               alt="user-img"
             />
             <label className="sh-user-name">{user.username}</label>
-            <label className="sh-log-out">Logout</label>
+            <label className="sh-log-out" onClick={handleLogout}>
+              Logout
+            </label>
             <img
               src={IMAGE_ASSETS.logout_icon}
               height={20}
               width={20}
               alt="logout-img"
+              onClick={handleLogout}
             />
           </CardGroup>
         </Col>
@@ -66,28 +74,52 @@ function ScreenHeader({ type = "home", ...props }) {
             <Input
               placeholder="Search recipes..."
               className="sh-search-input"
+              onChange={onSearch}
             />
             <FaSearch className="sh-search-icon" />
           </InputGroup>
         </Col>
         <List className="sh-list">
-          {[...categories, ...categories].map((item) => (
-            <div className="sh-list-item">{item.name}</div>
+          {[{ id: 0, name: "All" }, ...categories].map((item) => (
+            <div
+              className="sh-list-item"
+              onClick={() => onCategoryChanges(item)}
+            >
+              {item.name}
+            </div>
           ))}
         </List>
       </Container>
     );
   else if (type === "launcher")
     return (
-      <LandinHeader {...props} userDetails={user} onLogout={handleLogout} />
+      <LandinHeader
+        {...props}
+        userDetails={user}
+        onSearch={onSearch}
+        onLogout={handleLogout}
+        onCategoryChanges={onCategoryChanges}
+      />
     );
   else if (type === "category")
     return (
-      <CategoryHeader {...props} userDetails={user} onLogout={handleLogout} />
+      <CategoryHeader
+        {...props}
+        userDetails={user}
+        onSearch={onSearch}
+        onLogout={handleLogout}
+        onCategoryChanges={onCategoryChanges}
+      />
     );
   else if (type === "profile")
     return (
-      <ProfileHeader {...props} userDetails={user} onLogout={handleLogout} />
+      <ProfileHeader
+        {...props}
+        userDetails={user}
+        onSearch={onSearch}
+        onLogout={handleLogout}
+        onCategoryChanges={onCategoryChanges}
+      />
     );
   else return null;
 }

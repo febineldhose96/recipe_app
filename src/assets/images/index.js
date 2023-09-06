@@ -24,5 +24,6 @@ const IMAGE_ASSETS = {
   landinpage_email: require("./email.png"),
   landinpage_location: require("./landin_page_location.png"),
   login_background: require("./background_img_login.png"),
+  policy_img: require("./policy.jpg"),
 };
 export default IMAGE_ASSETS;
