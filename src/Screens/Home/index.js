@@ -1,5 +1,12 @@
 import React, { memo, useEffect, useState } from "react";
-import { collection, doc, onSnapshot, query } from "firebase/firestore";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../Firebase/config";
 import "./styles.css";
 import PlayerStack from "../../Components/PlayerStack";
@@ -31,6 +38,12 @@ function Home(props) {
   };
   const handleSearch = (event) => {
     setSearchText(event.target.value);
+    const docRef = doc(db, `users/${userId}`);
+    if (event.target.value.length > 4) {
+      updateDoc(docRef, {
+        userJourneySearchHistory: arrayUnion(event.target.value),
+      });
+    }
   };
   const snapShot = handlefilter(
     selectedCategory.id == 0

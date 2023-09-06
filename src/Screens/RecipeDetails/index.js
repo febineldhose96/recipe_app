@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import ImageContainer from "./ImageContainer";
@@ -35,6 +35,12 @@ export default function RecipeDetails(props) {
         console.log("saving recipe erorr", e);
       });
   };
+  useEffect(() => {
+    const docRef = doc(db, `users/${userId}`);
+    updateDoc(docRef, {
+      userJourneyRecipeHistory: arrayUnion(recipe),
+    });
+  }, []);
   // commenting on the recipe
   const handleComment = (comment) => {
     // data bindings
