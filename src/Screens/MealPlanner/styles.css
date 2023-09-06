@@ -1,0 +1,17 @@
+.meal-planner-input {
+  height: 40px;
+  width: 50%;
+  border: 1px solid green;
+  border-radius: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+.drop-down-button-style {
+  background-color: green;
+  margin-bottom: 20px;
+}
+.plan-details-shower {
+  border: 1px solid green;
+  border-radius: 10px;
+  padding: 10px;
+}

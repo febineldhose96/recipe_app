@@ -1,18 +1,10 @@
 import React from "react";
 import "./styles.css";
-import { isArray } from "../../../Config/checkers";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-export default function ImageContainer({ imageUrls = [] }) {
-  const settings =
-    isArray(imageUrls) && imageUrls.length < 2
-      ? {
-          showIndicators: false,
-          showThumbs: false,
-        }
-      : {};
+export default function ImageContainer({ video_urls = [] }) {
   return (
-    <div className="dt_imageWrapper" {...settings}>
-      {imageUrls.map((url, index) => {
+    <div className="dt_imageWrapper">
+      {video_urls.map((url, index) => {
         return (
           <video
             key={index}

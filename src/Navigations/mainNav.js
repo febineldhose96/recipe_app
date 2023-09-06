@@ -20,6 +20,7 @@ import Category from "../Screens/Category";
 import TestPage from "../Screens/Home/test";
 import { Col, Container, Row } from "reactstrap";
 import PrivacyPolicy from "../Screens/PrivacyPolicy";
+import MealPlanner from "../Screens/MealPlanner";
 function MainNav({ isLoggedIn = false }) {
   return (
     <NavigationProvider>
@@ -56,6 +57,7 @@ function MainNav({ isLoggedIn = false }) {
                 element={<UploadRecipe />}
               />
               <Route path={NAV_SCREENS.category} element={<Category />} />
+              <Route path={NAV_SCREENS.mealplanner} element={<MealPlanner />} />
               <Route
                 path={NAV_SCREENS.privacypolicy}
                 element={<PrivacyPolicy />}

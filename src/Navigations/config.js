@@ -10,5 +10,6 @@ const NAV_SCREENS = {
   category: "/categories",
   test: "/test",
   privacypolicy: "/privacypolicy",
+  mealplanner: "/mealplanner",
 };
 export { NAV_SCREENS };

@@ -80,8 +80,9 @@ function Profile() {
     }
   };
   const isSelected = selectedTab === "myrecipes";
+  console.log(state.homeReducer.recipes.map((item) => item));
   const snapShot = isSelected
-    ? state.savedRecipesReducer.recipes
+    ? state.homeReducer.recipes.filter((item) => item.userId === userId)
     : state.savedRecipesReducer.recipes;
   const isEmpty = Array.isArray(snapShot) ? snapShot.length === 0 : true;
 
@@ -165,30 +166,40 @@ function Profile() {
                     src={item.video_urls[0]}
                     loop
                     autoPlay={false}
-                    mainclassStyle="sr_player_video"
-                    playerStyle="sr_player_video_style"
+                    // className="sr_player_video"
+                    // className="sr_player_video_style"
                     onMouseOver={(e) => e.target.play()}
                     onMouseOut={(e) => e.target.pause()}
                     onCanPlay={(e) => e.target.pause()}
                     onClick={() => handleItemClick(item)}
                     style={{
                       height: 200,
-                      width: 200,
+                      width: "100%",
                       objectFit: "cover",
                       borderRadius: 10,
                     }}
                   />
-                  <Row style={{ marginTop: 10 }}>
-                    <Col sm={10}>
-                      <h4 style={{ color: "green" }}>{item.recipe_name}</h4>
-                    </Col>
-                    <Col sm={2}>
-                      <MdDelete
-                        style={{ fontSize: 20 }}
-                        onClick={() => handleRemove(item.id)}
-                      />
-                    </Col>
-                  </Row>
+                  <div
+                    className="row-s-p-container"
+                    style={{
+                      marginTop: 10,
+                    }}
+                  >
+                    <h4
+                      style={{
+                        color: "green",
+                        marginTop: 0,
+                        marginRight: 10,
+                      }}
+                    >
+                      {item.recipe_name}
+                    </h4>
+
+                    <MdDelete
+                      style={{ fontSize: 20 }}
+                      onClick={() => handleRemove(item.id)}
+                    />
+                  </div>
                 </div>
               );
             })

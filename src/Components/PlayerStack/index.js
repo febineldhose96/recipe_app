@@ -5,9 +5,13 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment, FaShare } from "react-icons/fa";
 import { TbBadge } from "react-icons/tb";
 import { db } from "../../Firebase/config";
-import { doc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import moment from "moment";
 import { Col, Container, Row } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { toastController } from "../ToastWidget";
+import { Messages } from "../../Config/messages";
+import { ChangeUserDetails } from "../../Screens/Profile/reducer";
 function PlayerStack({
   videoID,
   currentUser = null,
@@ -29,6 +33,9 @@ function PlayerStack({
   ...props
 }) {
   const [Liked, setLiked] = useState(isLiked);
+  const state = useSelector((state) => state);
+  const userId = state.profileReducer.userDetails.id;
+  const dispatch = useDispatch();
   const handleLikeButtonPress = useCallback(() => {
     const dbRef = doc(db, `recipes/${recipe_id}`);
     const _favFitlr = Liked
@@ -44,6 +51,18 @@ function PlayerStack({
     setLiked(!Liked);
     onLikeButtonPress(!Liked);
   }, [onLikeButtonPress, setLiked, Liked, currentUser, favourites, recipe_id]);
+  const handleSaveButtonPress = useCallback(() => {
+    const dbRef = doc(db, `users/${userId}`);
+    updateDoc(dbRef, {
+      saved_recipes: arrayUnion(recipe_id),
+    })
+      .then((e) => {
+        console.log("Success");
+        dispatch(ChangeUserDetails());
+        toastController.success(Messages.success_Messages.recipe_saved);
+      })
+      .catch((e) => console.log("errorr", e));
+  }, [recipe_id]);
   return (
     <div className="pl-main-style">
       <VideoPlayer
@@ -52,7 +71,7 @@ function PlayerStack({
         src={src}
         controls={controls}
         loop={true}
-        muted={true}
+        muted={false}
         onClick={onVideoClick}
         onMouseOver={onVideoFocus}
         onMouseOut={onVideoBlur}
@@ -76,17 +95,10 @@ function PlayerStack({
             <p className="home-like_count">{like_count}</p>
           </div>
 
-          {Liked ? (
-            <TbBadge
-              className="hm-badge-icon-active"
-              onClick={handleLikeButtonPress}
-            />
-          ) : (
-            <TbBadge
-              className="hm-badge-icon-inactive"
-              onClick={handleLikeButtonPress}
-            />
-          )}
+          <TbBadge
+            className="hm-badge-icon-inactive"
+            onClick={handleSaveButtonPress}
+          />
         </div>
       </div>
     </div>

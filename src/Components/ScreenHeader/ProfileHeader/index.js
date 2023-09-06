@@ -20,9 +20,11 @@ import { useNavigate } from "react-router-dom";
 import { FaEdit, FaSearch, FaStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import DropDown from "../../../Components/DropDown";
+import { NAV_SCREENS } from "../../../Navigations/config";
 export default function ProfileHeader({
   show = true,
   userDetails = {},
+  showMealPlannerIcon = true,
   onLogout = () => {},
   onEditProfile = () => {},
 }) {
@@ -71,16 +73,27 @@ export default function ProfileHeader({
                 />{" "}
                 3 user
               </Col>
-              <FaEdit
-                onClick={onEditProfile}
-                style={{
-                  marginTop: 10,
-                  color: "green",
-                  fontSize: 20,
-                  marginLeft: 12,
-                  marginBottom: 10,
-                }}
-              ></FaEdit>
+              {showMealPlannerIcon && (
+                <FaEdit
+                  onClick={onEditProfile}
+                  style={{
+                    marginTop: 10,
+                    color: "green",
+                    fontSize: 20,
+                    marginLeft: 12,
+                    marginBottom: 10,
+                  }}
+                ></FaEdit>
+              )}
+              {showMealPlannerIcon && (
+                <button
+                  onClick={() => navigate(NAV_SCREENS.mealplanner)}
+                  style={{ marginLeft: 50, marginTop: 20 }}
+                  className="br-green-active-button"
+                >
+                  Add Meal Planner
+                </button>
+              )}
             </Col>
           </Row>
         </Row>
