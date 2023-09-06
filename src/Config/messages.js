@@ -12,6 +12,7 @@ const Messages = {
     signup: "Sign up successfully",
     prof_img: "Profile Updated Successfully",
     selection_text: "Thank you for your recipe preferences selection",
+    addmeal: "Meal addded successfully",
   },
 };
 export { Messages };

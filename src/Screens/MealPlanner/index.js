@@ -3,13 +3,21 @@ import "./styles.css";
 import ScreenHeader from "../../Components/ScreenHeader";
 import { Button, Col } from "react-bootstrap";
 import { MdClose } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DropDown from "../../Components/DropDown";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../Firebase/config";
+import { toastController } from "../../Components/ToastWidget";
+import { Messages } from "../../Config/messages";
+import { ChangeUserDetails } from "../Profile/reducer";
 const MealPlanner = () => {
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const userId = state.profileReducer.userDetails.id;
+  const prevMealPlans = state.profileReducer.userDetails.mealPlanner;
   const [planner, setPlanner] = useState({
     ingredients: [],
-    plannername: "",
+    plann_name: "",
     dietType: {},
   });
   const [selectedItem, setSelectedItem] = useState({});
@@ -28,7 +36,13 @@ const MealPlanner = () => {
       }));
     }
   };
-  const prevMealPlans = [];
+  const handleAddMealToDatabase = () => {
+    const docRef = doc(db, `users/${userId}`);
+    updateDoc(docRef, { mealPlanner: arrayUnion(planner) }).then((e) => {
+      dispatch(ChangeUserDetails());
+      toastController.success(Messages.success_Messages.addmeal);
+    });
+  };
   return (
     <div>
       <ScreenHeader type="profile" showMealPlannerIcon={false} />
@@ -39,7 +53,9 @@ const MealPlanner = () => {
         <input
           placeholder="Enter your meal plan name"
           className="meal-planner-input"
-          onChange={() => {}}
+          onChange={(p) =>
+            setPlanner((e) => ({ ...e, plann_name: p.target.value }))
+          }
         />
         <DropDown
           placeholder={"Select DietType"}
@@ -96,7 +112,10 @@ const MealPlanner = () => {
             );
           })}
         </div>
-        <Button style={{ maxWidth: 200, marginTop: 100, marginBottom: 100 }}>
+        <Button
+          style={{ maxWidth: 200, marginTop: 100, marginBottom: 100 }}
+          onClick={handleAddMealToDatabase}
+        >
           Save Your Recipe Plan
         </Button>
         <div
@@ -107,17 +126,17 @@ const MealPlanner = () => {
             gap: 10,
           }}
         >
-          {planner.ingredients.slice(0, 1).map((item, index) => {
+          {prevMealPlans.map((item, index) => {
             return (
               <div key={index} className="plan-details-shower">
                 <h4 className="m-0" style={{ margin: 0, paddingBottom: 10 }}>
                   Plan Name : Tomato Rice
                 </h4>
 
-                <h5>DietType : {item.name}</h5>
+                <h5>DietType : {item.plann_name}</h5>
                 <h5>Ingredients : {item.name}</h5>
                 <div>
-                  {planner.ingredients.map((ingredient, index) => {
+                  {item.ingredients.map((ingredient, index) => {
                     return (
                       <div
                         sm="2"
